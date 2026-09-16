@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "space-xs": "0.5rem", "space-2xs": "0.25rem", "space-xl": "1.5rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-lg": "1.25rem", "space-2xl": "2rem", "space-sm": "0.75rem" }, "fontFamily": { "label-sm": [ "Open Sans" ], "headline-lg-mobile": [ "Poppins" ], "headline-sm": [ "Poppins" ], "display-lg": [ "Poppins" ], "body-lg": [ "Open Sans" ], "headline-lg": [ "Poppins" ], "label-md": [ "Open Sans" ], "data-metric": [ "Poppins" ], "body-md": [ "Open Sans" ], "body-sm": [ "Open Sans" ] }, "fontSize": { "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "label-md": [ "13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "data-metric": [ "28px", { "lineHeight": "32px", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-primary text-on-primary z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-space-md flex items-center gap-space-sm bg-primary border-b border-outline/20"><img alt="logo_sgcs.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VKLwPsIwvOtZdQmRwcMlKSEd5Amm-1HVl_a-BzYRfZRIvxxYtS-XcYu5bZyZxHF4ZxalQvqT1S_9ASaRI4oJjN9l3qArvbGHN4ozzrqdQe9FlHrlMwth3KzmwTuLaV9oJuFxfe-4X2ceZBZdiGuQY6NfWkITRq9qf4CJ1IP2qeWg1enRtv9oYN0Kby37kViKKLuTobRijT9880hXn8pSQ1i9w8YOsEHNuX9XvkEErSt4B-UC_C6XeY0jh7Eoftgx2xfWh7zK_Hmw"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-primary leading-none">SGCS</span><span class="font-label-sm text-label-sm text-on-primary-container tracking-wider uppercase">Gestão Predial</span></div></div><div class="px-space-md pt-space-md pb-space-xs"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline-variant font-bold">Menu Operacional</span></div><nav class="flex flex-col gap-space-2xs px-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold shadow-sm"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="chamados" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">assignment</span><span class="font-label-md text-label-md">Chamados</span></div><span class="px-space-2xs py-[2px] rounded-full bg-error text-on-error font-label-sm text-label-sm leading-none">14</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="condominios" href="#"><span class="material-symbols-outlined text-[20px]">apartment</span><span class="font-label-md text-label-md">Condomínios</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="tipos-de-chamado" href="#"><span class="material-symbols-outlined text-[20px]">category</span><span class="font-label-md text-label-md">Tipos de Chamado</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="configuracoes" href="#"><span class="material-symbols-outlined text-[20px]">tune</span><span class="font-label-md text-label-md">Configurações</span></a></nav></div><div class="p-space-md border-t border-outline/20 flex flex-col gap-space-sm bg-primary"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-primary truncate font-bold">Carlos Mendes</span><span class="font-body-sm text-body-sm text-on-primary-container truncate">Síndico Geral</span></div></div><div class="flex items-center justify-between text-outline-variant"><span class="font-label-sm text-label-sm">SGCS v2.4</span><span class="w-2 h-2 rounded-full bg-secondary"></span></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin-desktop"><div class="flex items-center gap-space-md"><img alt="logo_sgcs.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VKLwPsIwvOtZdQmRwcMlKSEd5Amm-1HVl_a-BzYRfZRIvxxYtS-XcYu5bZyZxHF4ZxalQvqT1S_9ASaRI4oJjN9l3qArvbGHN4ozzrqdQe9FlHrlMwth3KzmwTuLaV9oJuFxfe-4X2ceZBZdiGuQY6NfWkITRq9qf4CJ1IP2qeWg1enRtv9oYN0Kby37kViKKLuTobRijT9880hXn8pSQ1i9w8YOsEHNuX9XvkEErSt4B-UC_C6XeY0jh7Eoftgx2xfWh7zK_Hmw"/><div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><span class="font-label-md text-label-md font-semibold text-primary">SGCS</span><span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span><span class="font-body-sm text-body-sm text-on-surface-variant">Administração</span></div><div class="h-5 w-[1px] bg-outline-variant mx-space-2xs"></div><div class="flex items-center gap-space-2xs bg-surface-container-low px-space-sm py-space-2xs rounded border border-outline-variant/40 text-on-surface"><span class="material-symbols-outlined text-[18px] text-secondary">business</span><span class="font-label-md text-label-md font-semibold text-on-surface">Residencial Solar das Palmeiras</span><span class="material-symbols-outlined text-[18px] text-on-surface-variant">arrow_drop_down</span></div></div><div class="flex items-center gap-space-md"><button class="relative w-9 h-9 flex items-center justify-center rounded hover:bg-surface-container-high transition-colors text-on-surface-variant" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-[1px] bg-outline-variant"></div><div class="flex items-center gap-space-sm cursor-pointer p-space-2xs rounded hover:bg-surface-container-high transition-colors"><div class="flex flex-col text-right"><span class="font-label-md text-label-md font-bold text-on-surface leading-tight">Síndico Carlos Mendes</span><span class="font-body-sm text-body-sm text-on-surface-variant leading-none">Administrador Ativo</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">expand_more</span></div></div></header><main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Header & Control Bar Section -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-2xs text-secondary mb-space-2xs">
+<span class="font-label-sm text-label-sm tracking-wider uppercase">Módulo Operacional</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-sm text-label-sm tracking-wider uppercase text-on-surface-variant">Patrimônio</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Condomínios Cadastrados</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Gerenciamento de unidades residenciais e comerciais sob sua gestão.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center bg-surface-container-lowest shadow-sm rounded px-space-sm py-1.5 w-full sm:w-80">
+<span class="material-symbols-outlined text-outline text-[20px] mr-space-xs">search</span>
+<input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline w-full" id="search-input" placeholder="Filtrar por nome, rua ou bairro..." type="text"/>
+<span class="material-symbols-outlined text-outline text-[16px] animate-spin hidden" id="search-spinner">progress_activity</span>
+</div>
+<div class="flex items-center bg-surface-container-lowest shadow-sm rounded px-space-sm py-1.5">
+<span class="material-symbols-outlined text-outline text-[20px] mr-space-xs">location_city</span>
+<select class="bg-transparent border-none outline-none font-label-md text-label-md text-on-surface cursor-pointer" id="filter-region">
+<option value="all">Todas as Regiões (SP)</option>
+<option value="sp-centro">São Paulo - Centro</option>
+<option value="sp-madalena">São Paulo - Vila Madalena</option>
+<option value="sp-pinheiros">São Paulo - Pinheiros</option>
+</select>
+</div>
+<button class="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-md py-2 rounded font-label-md text-label-md shadow-sm transition-colors cursor-pointer" id="btn-open-modal" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Novo Condomínio</span>
+</button>
+</div>
+</div>
+<!-- Operational Metrics Banner -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-xl">
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total de Condomínios</span>
+<div class="flex items-baseline gap-space-2xs mt-space-2xs">
+<span class="font-data-metric text-data-metric text-primary">03</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">100% ativos</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Conformidade cadastral plena</span>
+</div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">apartment</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-secondary"></div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Unidades sob Gestão</span>
+<div class="flex items-baseline gap-space-2xs mt-space-2xs">
+<span class="font-data-metric text-data-metric text-primary">184</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">unidades</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">124 residenciais • 60 mistas</span>
+</div>
+<div class="w-12 h-12 rounded bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">domain</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-secondary-container"></div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex items-center justify-between relative overflow-hidden">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Chamados em Aberto</span>
+<div class="flex items-baseline gap-space-2xs mt-space-2xs">
+<span class="font-data-metric text-data-metric text-primary">17</span>
+<span class="font-label-sm text-label-sm text-error font-bold">3 críticos (SLA)</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Tempo médio de resolução: 3.8h</span>
+</div>
+<div class="w-12 h-12 rounded bg-error-container/30 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[28px]">pending_actions</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-error"></div>
+</div>
+</div>
+<!-- Buildings High-Density Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md mb-space-2xl" id="condominios-grid">
+<!-- Card 1: Edifício Aurora -->
+<article class="condo-card bg-surface-container-lowest rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between overflow-hidden" data-region="sp-centro">
+<div>
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Modern mid-rise residential building Edificio Aurora in downtown Sao Paulo with sleek architectural concrete, balconies with glass railings, bright overcast daytime lighting, clean corporate real estate aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT4dYh2zLDtLFAh52azZl1s0Zpc8zesWTlrU269kLttT4_E0mDAd50CEToZjXVTZ0onei8KHC0OhOMJ6xFN1T4JJ3F7zSy1cmK5Nt0J0B131TnDmKY3RHH3w58nH0QQEUJYBXSWeMt4ZyIkvMzkHIGeNRM9MLF6HuiMLqGi2W0jUQsijzbpsRTBy4jhh_rAQceM_FyG9KsRNYVZl7M6giQta40pCcxlZM_1OdGjozbUx4NEpY9PSEW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<div class="absolute top-space-sm right-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-surface-container-lowest/90 backdrop-blur-sm text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm tracking-wide">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              ATIVO
+            </span>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<span class="font-label-sm text-label-sm text-inverse-on-surface font-semibold uppercase tracking-wider">ID: CDN-001</span>
+<h2 class="font-headline-sm text-headline-sm text-on-primary leading-tight">Edifício Aurora</h2>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[18px] mt-0.5 shrink-0">pin_drop</span>
+<span class="font-body-sm text-body-sm leading-snug">Rua das Flores, 123 - Centro, São Paulo/SP • CEP 01001-000</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-space-xs rounded">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Unidades</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">50 Apartamentos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bloco A e Bloco B</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Responsável Local</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">Roberto Alves</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Zelador Predial</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-space-2xs px-space-xs rounded bg-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[18px]">assignment_late</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">7 chamados em aberto</span>
+<span class="font-body-sm text-body-sm text-error font-semibold">3 com prioridade alta</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-space-xs py-0.5 rounded shadow-sm font-semibold">SLA: 4h</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="h-[1px] bg-outline-variant/30 mb-space-sm"></div>
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">assignment</span>
+<span class="font-label-sm text-label-sm leading-tight">Chamados</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" onclick="openEditModal('Edifício Aurora', '01001-000', 'Rua das Flores', '123', 'Bloco A e B', 'Centro', 'São Paulo', 'SP', '50', 'Roberto Alves', '(11) 98765-4321')" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">edit</span>
+<span class="font-label-sm text-label-sm leading-tight">Editar</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">folder_open</span>
+<span class="font-label-sm text-label-sm leading-tight">Documentos</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Residencial Parque das Flores -->
+<article class="condo-card bg-surface-container-lowest rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between overflow-hidden" data-region="sp-madalena">
+<div>
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Modern upscale condominium tower Residencial Parque das Flores in Vila Madalena Sao Paulo with landscaped entrance garden, glass entrance facade, contemporary Brazilian architectural lines, natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLXxfmYvG-28lej9FjWjRq1Gav3feTPnvZ7BsHLBNS4qo2tOms-QmHwszJhW4bsCzWuvUw1sR5YPkZN6lF1v4-uUkk8rxSfk2QKoB3S5D0WgG8dLeane_WObISgnkBg7FH2rOXTPwhGBEw9ShaqFW9U9jOUkIZGFpHN0jIZu_RR91XMWajfy1-RuwWAzynKzuHQD3mp0NV5IL8zVhd_Vu7Y2aF_BWloqRL01gK_sowYFfGmi6vHJkL"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<div class="absolute top-space-sm right-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-surface-container-lowest/90 backdrop-blur-sm text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm tracking-wide">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              ATIVO
+            </span>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<span class="font-label-sm text-label-sm text-inverse-on-surface font-semibold uppercase tracking-wider">ID: CDN-002</span>
+<h2 class="font-headline-sm text-headline-sm text-on-primary leading-tight">Residencial Parque das Flores</h2>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[18px] mt-0.5 shrink-0">pin_drop</span>
+<span class="font-body-sm text-body-sm leading-snug">Av. das Acácias, 450 - Vila Madalena, São Paulo/SP • CEP 05432-000</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-space-xs rounded">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Unidades</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">74 Residenciais</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Torre Única (18 andares)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Responsável Local</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">Marcos Silveira</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Gerente Predial</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-space-2xs px-space-xs rounded bg-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">assignment_turned_in</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">6 chamados em aberto</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Manutenção preventiva rotineira</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-space-xs py-0.5 rounded shadow-sm font-semibold">SLA: 24h</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="h-[1px] bg-outline-variant/30 mb-space-sm"></div>
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">assignment</span>
+<span class="font-label-sm text-label-sm leading-tight">Chamados</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" onclick="openEditModal('Residencial Parque das Flores', '05432-000', 'Av. das Acácias', '450', 'Torre Única', 'Vila Madalena', 'São Paulo', 'SP', '74', 'Marcos Silveira', '(11) 97654-3210')" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">edit</span>
+<span class="font-label-sm text-label-sm leading-tight">Editar</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">folder_open</span>
+<span class="font-label-sm text-label-sm leading-tight">Documentos</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Condomínio Grand Tower -->
+<article class="condo-card bg-surface-container-lowest rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between overflow-hidden" data-region="sp-pinheiros">
+<div>
+<div class="relative h-44 w-full bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="High-rise commercial and residential mixed tower Condominio Grand Tower in Pinheiros Sao Paulo, reflective blue corporate glass curtain wall with steel accents, pristine urban architectural presentation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-zKlpq7VZ770RZT5EEYVG3PhotZMoNH-MDMaY75JwAeX1aGLOcYIaU1znei6HiDrj_tw3Xacn3Ca_LcRZqi0OajoPIgFXPuDgMhNGidIhkl8tmcC0DGBO1hy640BwSCdu7zvCzISpIjARtCzQ03CVOytFhRwYr3rc7EAoTX3EH6nmRQxdV2Q0OF5gcAOSKi-du93-tcYiSQx8v9BjqexwSAGw2wGHxBxtkLLijvskRUz9GcUu4N0n"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent"></div>
+<div class="absolute top-space-sm right-space-sm">
+<span class="inline-flex items-center gap-1.5 bg-surface-container-lowest/90 backdrop-blur-sm text-primary px-space-xs py-0.5 rounded font-label-sm text-label-sm tracking-wide">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              ATIVO
+            </span>
+</div>
+<div class="absolute bottom-space-sm left-space-md right-space-md">
+<span class="font-label-sm text-label-sm text-inverse-on-surface font-semibold uppercase tracking-wider">ID: CDN-003</span>
+<h2 class="font-headline-sm text-headline-sm text-on-primary leading-tight">Condomínio Grand Tower</h2>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[18px] mt-0.5 shrink-0">pin_drop</span>
+<span class="font-body-sm text-body-sm leading-snug">Alameda dos Pinheiros, 890 - Pinheiros, São Paulo/SP • CEP 05422-010</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs bg-surface-container-low p-space-xs rounded">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Unidades</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">60 Salas &amp; Flats</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uso Comercial / Misto</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Responsável Local</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold truncate">Renata Valença</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Supervisora Geral</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-space-2xs px-space-xs rounded bg-surface-container">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">4 chamados em aberto</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Estabilidade de infraestrutura</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-space-xs py-0.5 rounded shadow-sm font-semibold">SLA: 48h</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<div class="h-[1px] bg-outline-variant/30 mb-space-sm"></div>
+<div class="grid grid-cols-3 gap-space-xs">
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">assignment</span>
+<span class="font-label-sm text-label-sm leading-tight">Chamados</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" onclick="openEditModal('Condomínio Grand Tower', '05422-010', 'Alameda dos Pinheiros', '890', 'Salas 101-610', 'Pinheiros', 'São Paulo', 'SP', '60', 'Renata Valença', '(11) 91234-5678')" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">edit</span>
+<span class="font-label-sm text-label-sm leading-tight">Editar</span>
+</button>
+<button class="flex flex-col items-center justify-center p-2 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors text-primary text-center" type="button">
+<span class="material-symbols-outlined text-[18px] mb-0.5">folder_open</span>
+<span class="font-label-sm text-label-sm leading-tight">Documentos</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Empty State (Hidden by default) -->
+<div class="hidden flex-col items-center justify-center py-space-2xl bg-surface-container-lowest rounded shadow-sm text-center" id="empty-state">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline mb-space-sm">
+<span class="material-symbols-outlined text-[32px]">apartment</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Nenhum condomínio encontrado</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-sm">Tente redefinir os termos de busca ou o filtro de região para visualizar os ativos imobiliários.</p>
+<button class="mt-space-md text-secondary font-label-md text-label-md hover:underline" id="btn-reset-filters" type="button">Limpar filtros de pesquisa</button>
+</div>
+<!-- Lateral Drawer / Modal for Create & Edit -->
+<div aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 z-50 overflow-hidden hidden" id="modal-condominio" role="dialog">
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-xs transition-opacity duration-300" id="modal-backdrop"></div>
+<div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+<div class="w-screen max-w-xl bg-surface-container-lowest shadow-2xl flex flex-col justify-between">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">domain_add</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-primary leading-snug" id="modal-title">Novo Condomínio</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Insira os parâmetros cadastrais e operacionais</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary rounded p-1 transition-colors" id="btn-close-modal" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Drawer Form Body -->
+<form class="p-space-lg flex-1 overflow-y-auto flex flex-col gap-space-md" id="form-condominio">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-name">Nome do Condomínio *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-name" placeholder="Ex: Condomínio Residencial Jardins" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-cep">CEP *</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-cep" maxlength="9" placeholder="00000-000" required="" type="text"/>
+<button class="absolute right-2 text-secondary font-label-sm text-label-sm uppercase hover:underline" id="btn-busca-cep" type="button">Buscar</button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-units">Nº de Unidades *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-units" min="1" placeholder="Ex: 64" required="" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="col-span-2 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-street">Logradouro *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-street" placeholder="Rua, Avenida, Alameda..." required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-number">Número *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-number" placeholder="123" required="" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-complement">Complemento / Blocos</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-complement" placeholder="Blocos A e B, Torre 1" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-neighborhood">Bairro *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-neighborhood" placeholder="Nome do bairro" required="" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="col-span-2 flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-city">Cidade *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-city" required="" type="text" value="São Paulo"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-state">Estado *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 uppercase transition-all" id="condo-state" maxlength="2" required="" type="text" value="SP"/>
+</div>
+</div>
+<div class="mt-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider block mb-space-xs">Contato Operacional &amp; Emergência</span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-contact-name">Zelador / Contato *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-contact-name" placeholder="Nome do Zelador" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface font-semibold uppercase tracking-wider" for="condo-phone">Telefone de Plantão *</label>
+<input class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-body-md text-body-md rounded outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/50 transition-all" id="condo-phone" placeholder="(11) 99999-9999" required="" type="tel"/>
+</div>
+</div>
+</div>
+</form>
+<!-- Drawer Footer -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer" id="btn-cancel-modal" type="button">
+            Cancelar
+          </button>
+<button class="px-space-md py-2 rounded font-label-md text-label-md bg-primary-container hover:bg-primary text-on-primary shadow-sm transition-colors cursor-pointer flex items-center gap-space-2xs" id="btn-save-condo" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Salvar Condomínio</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast Notification Feedback -->
+<div class="fixed bottom-6 right-6 z-50 bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded shadow-xl flex items-center gap-space-sm translate-y-20 opacity-0 transition-all duration-300 pointer-events-none" id="toast">
+<span class="material-symbols-outlined text-secondary-container text-[20px]">check_circle</span>
+<span class="font-label-md text-label-md" id="toast-message">Dados atualizados com sucesso.</span>
+</div>
+</div>
+<script>
+  (function () {
+    const searchInput = document.getElementById('search-input');
+    const searchSpinner = document.getElementById('search-spinner');
+    const filterRegion = document.getElementById('filter-region');
+    const condoCards = document.querySelectorAll('.condo-card');
+    const emptyState = document.getElementById('empty-state');
+    const btnResetFilters = document.getElementById('btn-reset-filters');
+
+    const modal = document.getElementById('modal-condominio');
+    const btnOpenModal = document.getElementById('btn-open-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+    const btnCancelModal = document.getElementById('btn-cancel-modal');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const form = document.getElementById('form-condominio');
+    const modalTitle = document.getElementById('modal-title');
+    const btnSaveCondo = document.getElementById('btn-save-condo');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    const condoCep = document.getElementById('condo-cep');
+    const condoPhone = document.getElementById('condo-phone');
+
+    // Simple Masking helpers
+    function applyMask(value, pattern) {
+      let i = 0;
+      const clean = value.replace(/\D/g, '');
+      return pattern.replace(/#/g, () => clean[i++] || '').trim();
+    }
+
+    if (condoCep) {
+      condoCep.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '').slice(0, 8);
+        if (val.length > 5) {
+          e.target.value = val.slice(0, 5) + '-' + val.slice(5);
+        } else {
+          e.target.value = val;
+        }
+      });
+    }
+
+    if (condoPhone) {
+      condoPhone.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '').slice(0, 11);
+        if (val.length > 10) {
+          e.target.value = '(' + val.slice(0, 2) + ') ' + val.slice(2, 7) + '-' + val.slice(7);
+        } else if (val.length > 6) {
+          e.target.value = '(' + val.slice(0, 2) + ') ' + val.slice(2, 6) + '-' + val.slice(6);
+        } else if (val.length > 2) {
+          e.target.value = '(' + val.slice(0, 2) + ') ' + val.slice(2);
+        } else {
+          e.target.value = val;
+        }
+      });
+    }
+
+    // Debounced Search and Filter Functionality
+    let debounceTimer;
+    function filterCards() {
+      const query = (searchInput.value || '').toLowerCase().trim();
+      const region = filterRegion.value;
+      let visibleCount = 0;
+
+      condoCards.forEach((card) => {
+        const text = card.textContent.toLowerCase();
+        const cardRegion = card.getAttribute('data-region');
+        const matchesQuery = !query || text.includes(query);
+        const matchesRegion = region === 'all' || cardRegion === region;
+
+        if (matchesQuery && matchesRegion) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+      } else {
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+      }
+
+      searchSpinner.classList.add('hidden');
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchSpinner.classList.remove('hidden');
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(filterCards, 300);
+      });
+    }
+
+    if (filterRegion) {
+      filterRegion.addEventListener('change', filterCards);
+    }
+
+    if (btnResetFilters) {
+      btnResetFilters.addEventListener('click', () => {
+        searchInput.value = '';
+        filterRegion.value = 'all';
+        filterCards();
+      });
+    }
+
+    // Modal Control
+    function showModal(isEdit = false) {
+      modalTitle.textContent = isEdit ? 'Editar Dados do Condomínio' : 'Novo Condomínio';
+      modal.classList.remove('hidden');
+    }
+
+    function hideModal() {
+      modal.classList.add('hidden');
+      form.reset();
+    }
+
+    if (btnOpenModal) btnOpenModal.addEventListener('click', () => showModal(false));
+    if (btnCloseModal) btnCloseModal.addEventListener('click', hideModal);
+    if (btnCancelModal) btnCancelModal.addEventListener('click', hideModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', hideModal);
+
+    // Expose Edit to global window scope for inline onclicks
+    window.openEditModal = function (name, cep, street, number, comp, neigh, city, uf, units, contact, phone) {
+      document.getElementById('condo-name').value = name || '';
+      document.getElementById('condo-cep').value = cep || '';
+      document.getElementById('condo-street').value = street || '';
+      document.getElementById('condo-number').value = number || '';
+      document.getElementById('condo-complement').value = comp || '';
+      document.getElementById('condo-neighborhood').value = neigh || '';
+      document.getElementById('condo-city').value = city || '';
+      document.getElementById('condo-state').value = uf || '';
+      document.getElementById('condo-units').value = units || '';
+      document.getElementById('condo-contact-name').value = contact || '';
+      document.getElementById('condo-phone').value = phone || '';
+
+      showModal(true);
+    };
+
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+
+    if (btnSaveCondo) {
+      btnSaveCondo.addEventListener('click', (e) => {
+        e.preventDefault();
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach((field) => {
+          if (!field.value.trim()) {
+            isValid = false;
+            field.classList.add('ring-2', 'ring-error');
+          } else {
+            field.classList.remove('ring-2', 'ring-error');
+          }
+        });
+
+        if (!isValid) {
+          showToast('Preencha todos os campos obrigatórios (*).');
+          return;
+        }
+
+        const condoTitle = document.getElementById('condo-name').value;
+        hideModal();
+        showToast('Condomínio "' + condoTitle + '" salvo com sucesso!');
+      });
+    }
+  })();
+</script></main></div></body></html>
