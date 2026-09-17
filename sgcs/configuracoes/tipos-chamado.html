@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGCS — Tipos e Subtipos de Chamado</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002451",
+            "primary-container": "#0e3a73",
+            "secondary": "#346092",
+            "secondary-container": "#9cc7fe",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            "on-primary": "#ffffff",
+            "outline": "#737781",
+            "outline-variant": "#c3c6d1",
+            "error": "#ba1a1a"
+          },
+          fontSize: {
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+          },
+          spacing: {
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-lg": "1.25rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+  <link rel="stylesheet" href="/sgcs/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased">
+
+  <div id="sgcs-sidebar-container"></div>
+
+  <div class="pl-64 flex flex-col min-h-screen">
+    <div id="sgcs-header-container"></div>
+
+    <main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl">
+      <div class="flex flex-col w-full gap-space-lg max-w-5xl mx-auto">
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-space-2xs text-secondary mb-space-2xs">
+              <span class="font-sans text-label-sm tracking-wider uppercase">Configurações</span>
+              <span class="text-on-surface-variant font-sans text-label-sm">/</span>
+              <span class="font-sans text-label-sm tracking-wider uppercase text-on-surface-variant">Classificação</span>
+            </div>
+            <h1 class="font-poppins text-headline-lg text-primary tracking-tight">Tipos e Subtipos de Chamado</h1>
+            <p class="font-sans text-body-md text-on-surface-variant mt-space-2xs">Configure as categorias operacionais utilizadas para triagem e direcionamento de demandas.</p>
+          </div>
+
+          <button type="button" id="btn-novo-tipo"
+                  class="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary px-space-md py-2 rounded font-sans text-label-md shadow-sm transition-colors cursor-pointer self-start lg:self-auto">
+            <span class="material-symbols-outlined text-[18px]">add_circle</span>
+            <span>Novo Tipo</span>
+          </button>
+        </div>
+
+        <!-- Tabela de Tipos de Chamado -->
+        <div class="bg-surface-container-lowest rounded shadow-sm overflow-hidden flex flex-col">
+          <div class="p-space-md border-b border-surface-container flex items-center justify-between">
+            <h2 class="font-poppins text-headline-sm text-primary">Categorias Cadastradas</h2>
+            <span class="font-sans text-body-sm text-on-surface-variant">6 categorias ativas</span>
+          </div>
+
+          <div class="w-full overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low text-on-surface-variant">
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider">Ícone &amp; Nome</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider">Descrição</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider">Cor Identificadora</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider">Status</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider text-right pr-space-lg">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tipos-tbody" class="divide-y divide-surface-container-low font-sans text-body-sm text-on-surface">
+                <!-- Populado dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal para Criar/Editar Tipo -->
+  <div id="modal-tipo" class="fixed inset-0 z-50 flex items-center justify-center p-space-md hidden">
+    <div id="modal-tipo-backdrop" class="fixed inset-0 bg-primary/40 backdrop-blur-xs"></div>
+    <div class="relative w-full max-w-lg bg-surface-container-lowest rounded-lg shadow-xl p-space-lg flex flex-col gap-space-md z-10">
+      <div class="flex items-center justify-between border-b border-surface-container pb-space-xs">
+        <h2 id="modal-tipo-title" class="font-poppins text-headline-sm text-primary">Novo Tipo de Chamado</h2>
+        <button type="button" id="btn-close-tipo-modal" class="text-on-surface-variant hover:text-primary">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <form id="form-tipo" class="flex flex-col gap-space-md">
+        <div class="flex flex-col gap-1">
+          <label for="tipo-nome" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Nome da Categoria *</label>
+          <input type="text" id="tipo-nome" required placeholder="Ex: Manutenção Predial"
+                 class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary"/>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="tipo-descricao" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Descrição *</label>
+          <textarea id="tipo-descricao" required rows="3" placeholder="Breve resumo sobre quais solicitações entram nesta categoria..."
+                    class="w-full p-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary resize-y"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-space-md">
+          <div class="flex flex-col gap-1">
+            <label for="tipo-cor" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Cor de Destaque</label>
+            <input type="color" id="tipo-cor" value="#3B82F6" class="w-full h-9 p-1 rounded bg-surface-container-low cursor-pointer"/>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="tipo-icone" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Ícone</label>
+            <select id="tipo-icone" class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none cursor-pointer">
+              <option value="build">build (Manutenção)</option>
+              <option value="security">security (Segurança)</option>
+              <option value="cleaning_services">cleaning_services (Limpeza)</option>
+              <option value="attach_money">attach_money (Financeiro)</option>
+              <option value="description">description (Administrativo)</option>
+              <option value="chat">chat (Reclamação)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-space-sm pt-space-xs border-t border-surface-container">
+          <button type="button" id="btn-cancel-tipo" class="px-space-md py-1.5 rounded font-sans text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            Cancelar
+          </button>
+          <button type="submit" class="px-space-md py-1.5 rounded bg-primary-container hover:bg-primary text-on-primary font-sans text-label-md shadow-sm transition-colors cursor-pointer">
+            Salvar Categoria
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notyf CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="/sgcs/assets/js/config.js"></script>
+  <script src="/sgcs/assets/js/supabase.js"></script>
+  <script src="/sgcs/assets/js/utils.js"></script>
+  <script src="/sgcs/assets/js/validators.js"></script>
+  <script src="/sgcs/assets/js/ui.js"></script>
+  <script src="/sgcs/assets/js/auth.js"></script>
+  <script src="/sgcs/assets/js/layout.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      SGCS_AUTH.requireAuth();
+      SGCS_LAYOUT.initLayout('tipos-chamado');
+
+      const mockTipos = [
+        { id: '1', nome: 'Manutenção', descricao: 'Problemas de manutenção predial, reparos e conservação', cor: '#3B82F6', icone: 'build', ativo: true },
+        { id: '2', nome: 'Segurança', descricao: 'Questões relacionadas a portaria, CFTV e controle de acesso', cor: '#EF4444', icone: 'security', ativo: true },
+        { id: '3', nome: 'Limpeza', descricao: 'Higienização e conservação de áreas comuns', cor: '#10B981', icone: 'cleaning_services', ativo: true },
+        { id: '4', nome: 'Financeiro', descricao: 'Assuntos financeiros, cobranças e orçamentos', cor: '#F59E0B', icone: 'attach_money', ativo: true },
+        { id: '5', nome: 'Administrativo', descricao: 'Documentação, assembleias e comunicados', cor: '#8B5CF6', icone: 'description', ativo: true },
+        { id: '6', nome: 'Reclamação', descricao: 'Convivência, ruídos e barulho fora de horário', cor: '#EC4899', icone: 'chat', ativo: true }
+      ];
+
+      function renderTipos() {
+        const tbody = document.getElementById('tipos-tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = mockTipos.map(item => `
+          <tr class="hover:bg-surface-container-low/60 transition-colors">
+            <td class="py-3 px-space-md">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[20px]" style="color: ${item.cor}">${item.icone}</span>
+                <span class="font-sans text-label-md font-bold text-primary">${item.nome}</span>
+              </div>
+            </td>
+            <td class="py-3 px-space-md text-on-surface-variant font-sans text-body-sm">${item.descricao}</td>
+            <td class="py-3 px-space-md">
+              <div class="flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full border border-outline/30" style="background-color: ${item.cor}"></span>
+                <span class="font-sans text-label-sm text-outline">${item.cor}</span>
+              </div>
+            </td>
+            <td class="py-3 px-space-md">
+              <span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container text-primary font-sans text-label-sm font-bold">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Ativo
+              </span>
+            </td>
+            <td class="py-3 px-space-md text-right pr-space-lg">
+              <button type="button" onclick="openTipoModal('${item.nome}', '${item.descricao}', '${item.cor}', '${item.icone}')" class="p-1 rounded text-primary hover:bg-surface-container-high transition-colors" title="Editar">
+                <span class="material-symbols-outlined text-[18px]">edit</span>
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      renderTipos();
+
+      // Modal
+      const modal = document.getElementById('modal-tipo');
+      const btnNovo = document.getElementById('btn-novo-tipo');
+      const btnClose = document.getElementById('btn-close-tipo-modal');
+      const btnCancel = document.getElementById('btn-cancel-tipo');
+      const backdrop = document.getElementById('modal-tipo-backdrop');
+
+      function hideModal() {
+        modal.classList.add('hidden');
+        document.getElementById('form-tipo').reset();
+      }
+
+      window.openTipoModal = function (nome, desc, cor, icone) {
+        document.getElementById('modal-tipo-title').textContent = 'Editar Categoria';
+        document.getElementById('tipo-nome').value = nome || '';
+        document.getElementById('tipo-descricao').value = desc || '';
+        document.getElementById('tipo-cor').value = cor || '#3B82F6';
+        document.getElementById('tipo-icone').value = icone || 'build';
+        modal.classList.remove('hidden');
+      };
+
+      if (btnNovo) {
+        btnNovo.addEventListener('click', function () {
+          document.getElementById('modal-tipo-title').textContent = 'Nova Categoria';
+          modal.classList.remove('hidden');
+        });
+      }
+
+      if (btnClose) btnClose.addEventListener('click', hideModal);
+      if (btnCancel) btnCancel.addEventListener('click', hideModal);
+      if (backdrop) backdrop.addEventListener('click', hideModal);
+
+      document.getElementById('form-tipo').addEventListener('submit', function (e) {
+        e.preventDefault();
+        hideModal();
+        SGCS_UI.showToast('Categoria salva com sucesso!');
+      });
+    });
+  </script>
+</body>
+</html>

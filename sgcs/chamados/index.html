@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGCS — Listagem de Chamados</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002451",
+            "primary-container": "#0e3a73",
+            "secondary": "#346092",
+            "secondary-container": "#9cc7fe",
+            "secondary-fixed": "#d2e4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            "on-primary": "#ffffff",
+            "outline": "#737781",
+            "outline-variant": "#c3c6d1",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6"
+          },
+          fontSize: {
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "data-metric": ["28px", { "lineHeight": "32px", "fontWeight": "700" }]
+          },
+          spacing: {
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-lg": "1.25rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+  <link rel="stylesheet" href="/sgcs/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased">
+
+  <div id="sgcs-sidebar-container"></div>
+
+  <div class="pl-64 flex flex-col min-h-screen">
+    <div id="sgcs-header-container"></div>
+
+    <main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl">
+      <div class="flex flex-col w-full gap-space-lg pb-space-2xl">
+
+        <!-- Resumo & Ações Primárias -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-space-xs mb-1">
+              <span class="w-2 h-2 rounded-full bg-secondary"></span>
+              <span class="font-sans text-label-sm uppercase tracking-wider text-secondary font-bold">Painel Operacional</span>
+            </div>
+            <h1 class="font-poppins text-headline-lg text-primary tracking-tight">Gestão de Chamados</h1>
+            <p class="font-sans text-body-md text-on-surface-variant mt-0.5">Centralize e acompanhe solicitações de todos os condomínios gerenciados em tempo real.</p>
+          </div>
+
+          <div class="flex items-center gap-space-sm self-start md:self-auto">
+            <a href="/sgcs/chamados/novo.html" class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-primary-container hover:bg-primary text-on-primary font-sans text-label-md shadow-sm transition-all">
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              <span>Novo Chamado</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cards de Visão Geral das SLAs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+          <div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded shadow-sm">
+            <div class="flex flex-col">
+              <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Total Aberto</span>
+              <span class="font-poppins text-data-metric text-primary mt-1">28</span>
+              <span class="font-sans text-body-sm text-error mt-0.5 font-medium">+4 nas últimas 24h</span>
+            </div>
+            <div class="w-11 h-11 rounded bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-[24px]">inbox</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded shadow-sm">
+            <div class="flex flex-col">
+              <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Em Andamento</span>
+              <span class="font-poppins text-data-metric text-secondary mt-1">14</span>
+              <span class="font-sans text-body-sm text-on-surface-variant mt-0.5">8 técnicos em campo</span>
+            </div>
+            <div class="w-11 h-11 rounded bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+              <span class="material-symbols-outlined text-[24px]">pending_actions</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded shadow-sm">
+            <div class="flex flex-col">
+              <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Críticos / Vencendo</span>
+              <span class="font-poppins text-data-metric text-error mt-1">03</span>
+              <span class="font-sans text-body-sm text-error font-semibold mt-0.5">Atenção prioritária</span>
+            </div>
+            <div class="w-11 h-11 rounded bg-error-container/50 flex items-center justify-center text-error">
+              <span class="material-symbols-outlined text-[24px]">warning</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-space-md bg-surface-container-lowest rounded shadow-sm">
+            <div class="flex flex-col">
+              <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Resolvidos Mês</span>
+              <span class="font-poppins text-data-metric text-primary mt-1">182</span>
+              <span class="font-sans text-body-sm text-on-surface-variant mt-0.5">SLA médio: 4.2 horas</span>
+            </div>
+            <div class="w-11 h-11 rounded bg-surface-container flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined text-[24px]">task_alt</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de Filtros Avançados -->
+        <div class="bg-surface-container-lowest rounded p-space-md shadow-sm flex flex-col gap-space-sm">
+          <div class="flex flex-col lg:flex-row gap-space-sm">
+            <!-- Busca -->
+            <div class="relative flex-1">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+              <input type="text" id="search-input" placeholder="Buscar por protocolo (#), título ou solicitante..."
+                     class="w-full h-9 pl-9 pr-8 bg-surface-container-lowest text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:bg-surface-container-low transition-colors"/>
+            </div>
+
+            <!-- Grade de Seletores -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-space-xs">
+              <select id="filter-condo" class="h-9 px-space-xs bg-surface-container-lowest text-on-surface font-sans text-body-sm rounded border border-outline-variant/40 outline-none cursor-pointer">
+                <option value="">Condomínio: Todos</option>
+                <option value="aurora">Edifício Aurora</option>
+                <option value="flores">Parque das Flores</option>
+                <option value="tower">Grand Tower</option>
+              </select>
+
+              <select id="filter-status" class="h-9 px-space-xs bg-surface-container-lowest text-on-surface font-sans text-body-sm rounded border border-outline-variant/40 outline-none cursor-pointer">
+                <option value="">Status: Todos</option>
+                <option value="aberto">Aberto</option>
+                <option value="em_andamento">Em Andamento</option>
+                <option value="aguardando">Aguardando Peça</option>
+                <option value="resolvido">Resolvido</option>
+              </select>
+
+              <select id="filter-priority" class="h-9 px-space-xs bg-surface-container-lowest text-on-surface font-sans text-body-sm rounded border border-outline-variant/40 outline-none cursor-pointer">
+                <option value="">Prioridade: Todas</option>
+                <option value="critica">Crítica</option>
+                <option value="alta">Alta</option>
+                <option value="media">Média</option>
+                <option value="baixa">Baixa</option>
+              </select>
+
+              <button type="button" id="btn-reset-filters" class="h-9 px-space-sm flex items-center justify-center gap-1 bg-surface-container-high hover:bg-surface-container text-on-surface-variant rounded font-sans text-label-sm uppercase transition-colors">
+                <span class="material-symbols-outlined text-[16px]">clear_all</span>
+                <span>Limpar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela de Chamados com Alta Densidade Profissional -->
+        <div class="bg-surface-container-lowest rounded shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-surface-container-low text-on-surface-variant">
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider w-24">Protocolo</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider min-w-[280px]">Título &amp; Solicitação</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider min-w-[180px]">Condomínio / Local</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider min-w-[160px]">Solicitante</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider w-32">Categoria</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider w-28">Prioridade</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider w-36">Status</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider w-36">Data Abertura</th>
+                  <th class="py-2.5 px-space-md font-sans text-label-sm uppercase tracking-wider text-right pr-space-lg w-32">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="chamados-tbody" class="divide-y divide-surface-container-low">
+                <!-- Populado dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Notyf CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="/sgcs/assets/js/config.js"></script>
+  <script src="/sgcs/assets/js/supabase.js"></script>
+  <script src="/sgcs/assets/js/utils.js"></script>
+  <script src="/sgcs/assets/js/validators.js"></script>
+  <script src="/sgcs/assets/js/ui.js"></script>
+  <script src="/sgcs/assets/js/auth.js"></script>
+  <script src="/sgcs/assets/js/layout.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      SGCS_AUTH.requireAuth();
+      SGCS_LAYOUT.initLayout('chamados');
+
+      const mockChamados = [
+        { id: '1', numero: '#0048', titulo: 'Infiltração na laje da garagem subterrânea', detalhe: 'Gotejamento persistente próximo ao quadro elétrico', condominio: 'Edifício Aurora', local: 'Vaga 14 (Subsolo 2)', solicitante: 'Carlos Eduardo', ap: 'Síndico / Portaria', categoria: 'Estrutural', prioridade: 'critica', status: 'em_andamento', data: '02/09/2026', hora: '09:15' },
+        { id: '2', numero: '#0047', titulo: 'Falha no sensor do portão principal', detalhe: 'Anti-esmagamento descalibrado, fechamento com solavancos', condominio: 'Parque das Flores', local: 'Entrada Principal A', solicitante: 'Mariana Costa', ap: 'Apto 302', categoria: 'Segurança', prioridade: 'alta', status: 'aberto', data: '02/09/2026', hora: '08:30' },
+        { id: '3', numero: '#0046', titulo: 'Lâmpadas queimadas no 4º andar Bloco B', detalhe: 'Três luminárias de LED tubulares no corredor central', condominio: 'Edifício Aurora', local: 'Hall 4º Andar - Bloco B', solicitante: 'Zeladoria Roberto', ap: 'Equipe Interna', categoria: 'Elétrica', prioridade: 'media', status: 'aberto', data: '01/09/2026', hora: '18:40' },
+        { id: '4', numero: '#0045', titulo: 'Solicitação de reserva do salão de festas', detalhe: 'Data prevista: 19/09, lista de 45 convidados anexada', condominio: 'Grand Tower', local: 'Salão Nobre / Térreo', solicitante: 'Felipe Antunes', ap: 'Cobertura 01', categoria: 'Administrativo', prioridade: 'baixa', status: 'resolvido', data: '01/09/2026', hora: '14:10' },
+        { id: '5', numero: '#0044', titulo: 'Ruído excessivo na bomba d\'água', detalhe: 'Vibração anormal identificada na bomba pressurizadora B-02', condominio: 'Edifício Aurora', local: 'Barrilete / Casa de Máquinas', solicitante: 'Zeladoria Roberto', ap: 'Equipe Interna', categoria: 'Hidráulica', prioridade: 'alta', status: 'em_andamento', data: '01/09/2026', hora: '11:20' }
+      ];
+
+      function renderTable(items) {
+        const tbody = document.getElementById('chamados-tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = items.map(item => `
+          <tr class="hover:bg-surface-container-low/60 transition-colors group">
+            <td class="py-3 px-space-md">
+              <span class="font-sans text-label-md text-primary font-bold tracking-tight">${item.numero}</span>
+            </td>
+            <td class="py-3 px-space-md">
+              <div class="flex flex-col">
+                <span class="font-sans text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">${item.titulo}</span>
+                <span class="font-sans text-body-sm text-on-surface-variant truncate max-w-sm">${item.detalhe}</span>
+              </div>
+            </td>
+            <td class="py-3 px-space-md">
+              <div class="flex flex-col">
+                <span class="font-sans text-body-sm font-semibold text-on-surface">${item.condominio}</span>
+                <span class="font-sans text-body-sm text-on-surface-variant">${item.local}</span>
+              </div>
+            </td>
+            <td class="py-3 px-space-md">
+              <div class="flex flex-col">
+                <span class="font-sans text-body-sm text-on-surface font-semibold">${item.solicitante}</span>
+                <span class="text-[10px] text-on-surface-variant">${item.ap}</span>
+              </div>
+            </td>
+            <td class="py-3 px-space-md">
+              <span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded bg-surface-container text-primary font-sans text-label-sm">${item.categoria}</span>
+            </td>
+            <td class="py-3 px-space-md">${SGCS_UTILS.getPriorityBadgeHTML(item.prioridade)}</td>
+            <td class="py-3 px-space-md">${SGCS_UTILS.getStatusBadgeHTML(item.status)}</td>
+            <td class="py-3 px-space-md">
+              <div class="flex flex-col">
+                <span class="font-sans text-body-sm text-on-surface">${item.data}</span>
+                <span class="text-[11px] text-on-surface-variant">${item.hora}</span>
+              </div>
+            </td>
+            <td class="py-3 px-space-md text-right pr-space-lg">
+              <a href="/sgcs/chamados/detalhe.html?id=${item.id}" class="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-surface-container-high hover:bg-primary hover:text-on-primary text-primary font-sans text-label-sm font-bold transition-all">
+                <span>Detalhes</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </a>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      renderTable(mockChamados);
+
+      // Search and Filter logic
+      const searchInput = document.getElementById('search-input');
+      const filterStatus = document.getElementById('filter-status');
+      const filterPriority = document.getElementById('filter-priority');
+      const btnReset = document.getElementById('btn-reset-filters');
+
+      function filterData() {
+        const q = searchInput.value.toLowerCase().trim();
+        const st = filterStatus.value;
+        const pr = filterPriority.value;
+
+        const filtered = mockChamados.filter(item => {
+          const matchQ = !q || item.titulo.toLowerCase().includes(q) || item.solicitante.toLowerCase().includes(q) || item.numero.toLowerCase().includes(q);
+          const matchSt = !st || item.status === st;
+          const matchPr = !pr || item.prioridade === pr;
+          return matchQ && matchSt && matchPr;
+        });
+
+        renderTable(filtered);
+      }
+
+      if (searchInput) searchInput.addEventListener('input', filterData);
+      if (filterStatus) filterStatus.addEventListener('change', filterData);
+      if (filterPriority) filterPriority.addEventListener('change', filterData);
+      if (btnReset) {
+        btnReset.addEventListener('click', function () {
+          searchInput.value = '';
+          filterStatus.value = '';
+          filterPriority.value = '';
+          renderTable(mockChamados);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

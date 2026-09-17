@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGCS — Detalhe do Chamado #0048</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002451",
+            "primary-container": "#0e3a73",
+            "secondary": "#346092",
+            "secondary-container": "#9cc7fe",
+            "secondary-fixed": "#d2e4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            "on-primary": "#ffffff",
+            "outline": "#737781",
+            "outline-variant": "#c3c6d1",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          fontSize: {
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "data-metric": ["28px", { "lineHeight": "32px", "fontWeight": "700" }]
+          },
+          spacing: {
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-lg": "1.25rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+  <link rel="stylesheet" href="/sgcs/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased">
+
+  <div id="sgcs-sidebar-container"></div>
+
+  <div class="pl-64 flex flex-col min-h-screen">
+    <div id="sgcs-header-container"></div>
+
+    <main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl">
+      <div class="flex flex-col w-full gap-space-lg">
+
+        <!-- Header Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-lg shadow-sm">
+          <div class="flex items-center gap-space-md">
+            <a href="/sgcs/chamados/index.html" class="flex items-center gap-space-xs text-primary hover:text-secondary transition-colors font-sans text-label-md">
+              <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+              <span>Voltar para listagem de chamados</span>
+            </a>
+            <div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+            <div class="flex items-center gap-space-2xs text-on-surface-variant font-sans text-label-sm uppercase tracking-wider">
+              <span>Chamados</span>
+              <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span class="text-primary font-bold">Protocolo #0048</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-space-xs">
+            <span id="badge-status-top" class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-sans text-label-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              EM ANDAMENTO
+            </span>
+            <span id="badge-priority-top" class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-sans text-label-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+              PRIORIDADE CRÍTICA
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+
+          <!-- Coluna Principal (70%) -->
+          <div class="lg:col-span-8 flex flex-col gap-space-lg min-w-0">
+
+            <article class="bg-surface-container-lowest p-space-xl rounded-lg shadow-sm flex flex-col gap-space-lg">
+              <div class="flex flex-col gap-space-xs">
+                <div class="flex items-center gap-space-xs text-secondary font-sans text-label-sm tracking-widest uppercase font-bold">
+                  <span class="material-symbols-outlined text-[16px]">plumbing</span>
+                  <span>Manutenção Hidráulica e Estrutural</span>
+                </div>
+                <h1 class="font-poppins text-headline-lg text-on-surface tracking-tight">
+                  #0048 — Vazamento persistente no hall do Bloco B e infiltração na garagem
+                </h1>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-space-sm p-space-md rounded bg-surface-container-low">
+                <div class="flex flex-col">
+                  <span class="font-sans text-label-sm text-on-surface-variant uppercase">Solicitante</span>
+                  <span class="font-sans text-label-md text-on-surface font-semibold truncate">João Silva</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-sans text-label-sm text-on-surface-variant uppercase">Unidade</span>
+                  <span class="font-sans text-label-md text-on-surface font-semibold truncate">Bloco B - Apto 101</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-sans text-label-sm text-on-surface-variant uppercase">Telefone</span>
+                  <span class="font-sans text-label-md text-on-surface font-semibold truncate">(11) 98765-4321</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-sans text-label-sm text-on-surface-variant uppercase">E-mail</span>
+                  <span class="font-sans text-label-md text-on-surface font-semibold truncate">joao.silva@email.com</span>
+                </div>
+                <div class="flex flex-col col-span-2 sm:col-span-1">
+                  <span class="font-sans text-label-sm text-on-surface-variant uppercase">Abertura</span>
+                  <span class="font-sans text-label-md text-on-surface font-semibold truncate">02/09/2026 às 08:30</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-space-xs">
+                <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Descrição da Ocorrência</span>
+                <div class="p-space-md rounded bg-surface-container-low/70 flex flex-col gap-space-xs text-on-surface">
+                  <p class="font-sans text-body-md leading-relaxed">
+                    Foi identificado no início da manhã de hoje uma poça d'água volumosa em frente ao elevador social do Bloco B. Ao descer ao subsolo (nível G1), notou-se gotejamento constante sobre as vagas 14 e 15, com desprendimento inicial de reboco no teto. Risco iminente de dano ao acabamento das áreas comuns e aos veículos estacionados abaixo da prumada de serviço.
+                  </p>
+                  <div class="flex items-center gap-space-xs text-secondary font-sans text-label-sm pt-space-2xs">
+                    <span class="material-symbols-outlined text-[16px]">priority_high</span>
+                    <span>Classificado com impacto na segurança e trânsito interno de moradores.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-space-sm">
+                <div class="flex items-center justify-between">
+                  <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Documentos e Fotos Anexas (2)</span>
+                  <span class="font-sans text-body-sm text-on-surface-variant">3.5 MB total</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low hover:bg-surface-container transition-colors">
+                    <div class="flex items-center gap-space-sm min-w-0">
+                      <div class="w-10 h-10 rounded bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+                        <span class="material-symbols-outlined text-[22px]">image</span>
+                      </div>
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-sans text-label-md text-on-surface truncate font-semibold">foto_infiltracao_teto.jpg</span>
+                        <span class="font-sans text-body-sm text-on-surface-variant">2.4 MB • JPG</span>
+                      </div>
+                    </div>
+                    <button type="button" onclick="SGCS_UI.showToast('Download do anexo iniciado.')" class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Baixar">
+                      <span class="material-symbols-outlined text-[18px]">download</span>
+                    </button>
+                  </div>
+
+                  <div class="flex items-center justify-between p-space-sm rounded bg-surface-container-low hover:bg-surface-container transition-colors">
+                    <div class="flex items-center gap-space-sm min-w-0">
+                      <div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary shrink-0">
+                        <span class="material-symbols-outlined text-[22px]">description</span>
+                      </div>
+                      <div class="flex flex-col min-w-0">
+                        <span class="font-sans text-label-md text-on-surface truncate font-semibold">laudo_vistoria_preliminar.pdf</span>
+                        <span class="font-sans text-body-sm text-on-surface-variant">1.1 MB • PDF</span>
+                      </div>
+                    </div>
+                    <button type="button" onclick="SGCS_UI.showToast('Download do anexo iniciado.')" class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container-high hover:text-primary transition-colors" title="Baixar">
+                      <span class="material-symbols-outlined text-[18px]">download</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Seção de Timeline de Auditoria -->
+            <section class="bg-surface-container-lowest p-space-xl rounded-lg shadow-sm flex flex-col gap-space-xl">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+                  <h2 class="font-poppins text-headline-sm text-on-surface">Histórico e Linha de Auditoria</h2>
+                </div>
+                <span id="timeline-count" class="font-sans text-label-sm text-on-surface-variant bg-surface-container px-space-xs py-0.5 rounded">3 registros</span>
+              </div>
+
+              <!-- Form Comentário -->
+              <form id="comment-form" class="flex flex-col gap-space-sm p-space-md rounded bg-surface-container-low">
+                <label for="new-update" class="font-sans text-label-md text-on-surface font-semibold flex items-center gap-space-2xs">
+                  <span class="material-symbols-outlined text-[16px] text-primary">add_comment</span>
+                  Registrar Nova Atualização ou Despacho Técnico
+                </label>
+                <textarea id="new-update" rows="3" required placeholder="Insira aqui as observações de atendimento, agendamento com prestadores ou parecer do síndico..."
+                          class="w-full bg-surface-container-lowest text-on-surface placeholder:text-outline p-space-sm rounded font-sans text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 resize-y"></textarea>
+                <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-2xs">
+                  <button type="button" onclick="SGCS_UI.showToast('Selecione uma foto para anexar.')" class="flex items-center gap-space-2xs px-space-sm py-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-sans text-label-md">
+                    <span class="material-symbols-outlined text-[18px]">attach_file</span>
+                    <span>Anexar Foto</span>
+                  </button>
+                  <button type="submit" class="flex items-center gap-space-2xs px-space-md py-1.5 rounded bg-primary-container text-on-primary hover:bg-primary transition-colors font-sans text-label-md cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">send</span>
+                    <span>Publicar Atualização</span>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Events Container -->
+              <div id="timeline-container" class="relative pl-6 flex flex-col gap-space-xl before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-[2px] before:bg-surface-container-highest">
+
+                <div class="relative flex flex-col gap-space-xs">
+                  <span class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-secondary flex items-center justify-center ring-4 ring-surface-container-lowest">
+                    <span class="material-symbols-outlined text-on-primary text-[12px]">cached</span>
+                  </span>
+                  <div class="flex flex-wrap items-baseline justify-between gap-space-xs">
+                    <span class="font-sans text-label-md text-on-surface font-bold">Alteração de Status Operacional</span>
+                    <span class="font-sans text-body-sm text-on-surface-variant">Hoje, 10:15</span>
+                  </div>
+                  <div class="flex items-center gap-space-2xs text-body-sm font-sans text-on-surface-variant">
+                    <span class="font-semibold text-primary">Síndico Carlos Mendes</span>
+                    <span>alterou o status para</span>
+                    <span class="px-1.5 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-bold text-label-sm">Em Andamento</span>
+                  </div>
+                  <div class="mt-space-2xs p-space-sm rounded bg-surface-container-low text-on-surface font-sans text-body-md">
+                    "Encaminhado chamado com urgência para a empresa HidroFix Engenharia verificar a tubulação do Bloco B."
+                  </div>
+                </div>
+
+                <div class="relative flex flex-col gap-space-xs">
+                  <span class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-lowest">
+                    <span class="material-symbols-outlined text-on-primary text-[12px]">build</span>
+                  </span>
+                  <div class="flex flex-wrap items-baseline justify-between gap-space-xs">
+                    <span class="font-sans text-label-md text-on-surface font-bold">Comentário Técnico da Zeladoria</span>
+                    <span class="font-sans text-body-sm text-on-surface-variant">Hoje, 09:40</span>
+                  </div>
+                  <div class="flex items-center gap-space-2xs text-body-sm font-sans text-on-surface-variant">
+                    <span class="font-semibold text-primary">Zelador Roberto Santana</span>
+                    <span>registrou ação no local</span>
+                  </div>
+                  <div class="mt-space-2xs p-space-sm rounded bg-surface-container-low text-on-surface font-sans text-body-md">
+                    "Válvula geral de alimentação do bloco fechada temporariamente para conter gotejamento no subsolo."
+                  </div>
+                </div>
+
+                <div class="relative flex flex-col gap-space-xs">
+                  <span class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-outline flex items-center justify-center ring-4 ring-surface-container-lowest">
+                    <span class="material-symbols-outlined text-surface-container-lowest text-[12px]">fiber_new</span>
+                  </span>
+                  <div class="flex flex-wrap items-baseline justify-between gap-space-xs">
+                    <span class="font-sans text-label-md text-on-surface font-bold">Abertura do Chamado</span>
+                    <span class="font-sans text-body-sm text-on-surface-variant">Hoje, 08:30</span>
+                  </div>
+                  <div class="flex items-center gap-space-2xs text-body-sm font-sans text-on-surface-variant">
+                    <span class="font-semibold text-primary">Morador João Silva (Apto 101)</span>
+                    <span>abriu a solicitação</span>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </div>
+
+          <!-- Coluna Lateral (30%) -->
+          <aside class="lg:col-span-4 flex flex-col gap-space-lg w-full">
+
+            <div class="bg-surface-container-lowest p-space-lg rounded-lg shadow-sm flex flex-col gap-space-md">
+              <div class="flex items-center gap-space-xs pb-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">bolt</span>
+                <h2 class="font-poppins text-headline-sm text-on-surface">Ações Rápidas do Síndico</h2>
+              </div>
+
+              <div class="flex flex-col gap-space-2xs">
+                <label for="select-status" class="font-sans text-label-sm text-on-surface-variant uppercase font-bold">Alterar Status</label>
+                <select id="select-status" class="w-full bg-surface-container-low text-on-surface font-sans text-label-md p-space-xs rounded outline-none focus:ring-2 focus:ring-secondary/40 cursor-pointer">
+                  <option value="aberto">Aberto</option>
+                  <option value="em_andamento" selected>Em Andamento</option>
+                  <option value="aguardando">Aguardando Peça</option>
+                  <option value="resolvido">Resolvido</option>
+                  <option value="cancelado">Cancelado</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col gap-space-2xs">
+                <label for="select-priority" class="font-sans text-label-sm text-on-surface-variant uppercase font-bold">Nível de Prioridade</label>
+                <select id="select-priority" class="w-full bg-surface-container-low text-on-surface font-sans text-label-md p-space-xs rounded outline-none focus:ring-2 focus:ring-secondary/40 cursor-pointer">
+                  <option value="baixa">Baixa</option>
+                  <option value="media">Média</option>
+                  <option value="alta">Alta</option>
+                  <option value="critica" selected>Crítica</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col gap-space-2xs">
+                <label for="select-tech" class="font-sans text-label-sm text-on-surface-variant uppercase font-bold">Prestador Atribuído</label>
+                <select id="select-tech" class="w-full bg-surface-container-low text-on-surface font-sans text-label-md p-space-xs rounded outline-none focus:ring-2 focus:ring-secondary/40 cursor-pointer">
+                  <option value="1" selected>HidroFix Engenharia - Marcos Técnico</option>
+                  <option value="2">Manutenção Interna - Zelador Roberto</option>
+                  <option value="3">Elétrica Volt - Carlos Eletricista</option>
+                </select>
+              </div>
+
+              <div class="pt-space-xs flex flex-col gap-space-xs">
+                <button type="button" id="btn-save-actions" class="w-full flex items-center justify-center gap-space-xs py-2 px-space-md rounded bg-primary-container text-on-primary hover:bg-primary transition-colors font-sans text-label-md cursor-pointer">
+                  <span class="material-symbols-outlined text-[18px]">save</span>
+                  <span>Salvar Alterações</span>
+                </button>
+                <button type="button" onclick="window.print()" class="w-full flex items-center justify-center gap-space-xs py-2 px-space-md rounded bg-surface-container text-primary hover:bg-surface-container-high transition-colors font-sans text-label-md cursor-pointer">
+                  <span class="material-symbols-outlined text-[18px]">print</span>
+                  <span>Imprimir Ordem de Serviço (OS)</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-lg rounded-lg shadow-sm flex flex-col gap-space-md">
+              <div class="flex items-center gap-space-xs pb-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">apartment</span>
+                <h2 class="font-poppins text-headline-sm text-on-surface">Dados do Condomínio</h2>
+              </div>
+              <div class="flex flex-col gap-space-sm font-sans text-body-sm">
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-on-surface-variant">Condomínio</span>
+                  <span class="font-semibold text-on-surface text-right">Edifício Aurora</span>
+                </div>
+                <div class="flex justify-between items-start py-1">
+                  <span class="text-on-surface-variant">Endereço</span>
+                  <span class="font-semibold text-on-surface text-right max-w-[180px]">Rua das Flores, 123 - Centro</span>
+                </div>
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-on-surface-variant">Total de Unidades</span>
+                  <span class="font-semibold text-on-surface">50 apartamentos</span>
+                </div>
+                <div class="flex justify-between items-center py-1">
+                  <span class="text-on-surface-variant">Síndico Responsável</span>
+                  <span class="font-semibold text-on-surface">Carlos Mendes</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-surface-container-lowest p-space-lg rounded-lg shadow-sm flex flex-col gap-space-md">
+              <div class="flex items-center gap-space-xs pb-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+                <h2 class="font-poppins text-headline-sm text-on-surface">Controle de Prazos e SLA</h2>
+              </div>
+              <div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-space-xs">
+                <div class="flex justify-between items-center">
+                  <span class="font-sans text-label-sm text-on-surface-variant uppercase">Previsão SLA</span>
+                  <span class="font-sans text-label-sm font-bold text-secondary">Dentro da Meta</span>
+                </div>
+                <div class="font-poppins text-data-metric text-primary tracking-tight">Restam 28h</div>
+                <div class="w-full h-2 rounded bg-surface-container-highest overflow-hidden">
+                  <div class="h-full bg-secondary rounded" style="width: 42%;"></div>
+                </div>
+                <span class="font-sans text-body-sm text-on-surface-variant">Meta contratual: 48h para chamados críticos</span>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Notyf CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="/sgcs/assets/js/config.js"></script>
+  <script src="/sgcs/assets/js/supabase.js"></script>
+  <script src="/sgcs/assets/js/utils.js"></script>
+  <script src="/sgcs/assets/js/validators.js"></script>
+  <script src="/sgcs/assets/js/ui.js"></script>
+  <script src="/sgcs/assets/js/auth.js"></script>
+  <script src="/sgcs/assets/js/layout.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      SGCS_AUTH.requireAuth();
+      SGCS_LAYOUT.initLayout('chamados');
+
+      // Add comment to timeline
+      const commentForm = document.getElementById('comment-form');
+      const timelineContainer = document.getElementById('timeline-container');
+
+      if (commentForm) {
+        commentForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const textInput = document.getElementById('new-update');
+          const text = textInput.value.trim();
+          if (!text) return;
+
+          const now = new Date();
+          const timeStr = 'Hoje, ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+          const newEvent = document.createElement('div');
+          newEvent.className = 'relative flex flex-col gap-space-xs';
+          newEvent.innerHTML = `
+            <span class="absolute -left-6 top-0 w-5 h-5 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-lowest">
+              <span class="material-symbols-outlined text-on-primary text-[12px]">chat</span>
+            </span>
+            <div class="flex flex-wrap items-baseline justify-between gap-space-xs">
+              <span class="font-sans text-label-md text-on-surface font-bold">Despacho Técnico do Síndico</span>
+              <span class="font-sans text-body-sm text-on-surface-variant">${timeStr}</span>
+            </div>
+            <div class="flex items-center gap-space-2xs text-body-sm font-sans text-on-surface-variant">
+              <span class="font-semibold text-primary">Síndico Carlos Mendes</span>
+            </div>
+            <div class="mt-space-2xs p-space-sm rounded bg-surface-container-low text-on-surface font-sans text-body-md">
+              "${text}"
+            </div>
+          `;
+
+          timelineContainer.insertBefore(newEvent, timelineContainer.firstChild);
+          textInput.value = '';
+          SGCS_UI.showToast('Atualização registrada no histórico!');
+        });
+      }
+
+      // Save Actions
+      const btnSaveActions = document.getElementById('btn-save-actions');
+      if (btnSaveActions) {
+        btnSaveActions.addEventListener('click', function () {
+          const st = document.getElementById('select-status').value;
+          const pr = document.getElementById('select-priority').value;
+
+          document.getElementById('badge-status-top').innerHTML = SGCS_UTILS.getStatusBadgeHTML(st);
+          document.getElementById('badge-priority-top').innerHTML = SGCS_UTILS.getPriorityBadgeHTML(pr);
+
+          SGCS_UI.showToast('Status e prioridade do chamado atualizados!');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

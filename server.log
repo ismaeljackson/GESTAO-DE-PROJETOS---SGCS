@@ -1,0 +1,11 @@
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/dashboard.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/ui.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/config.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/validators.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/supabase.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/css/app.css HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/utils.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/layout.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:03] "GET /sgcs/assets/js/auth.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:07] "GET /sgcs/condominios/index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2026 00:48:08] "GET /sgcs/chamados/detalhe.html?id=1 HTTP/1.1" 200 -

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGCS — Perfil do Usuário</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002451",
+            "primary-container": "#0e3a73",
+            "secondary": "#346092",
+            "secondary-container": "#9cc7fe",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            "on-primary": "#ffffff",
+            "outline": "#737781",
+            "outline-variant": "#c3c6d1",
+            "error": "#ba1a1a"
+          },
+          spacing: {
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-lg": "1.25rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+  <link rel="stylesheet" href="/sgcs/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased">
+
+  <div id="sgcs-sidebar-container"></div>
+
+  <div class="pl-64 flex flex-col min-h-screen">
+    <div id="sgcs-header-container"></div>
+
+    <main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl">
+      <div class="flex flex-col w-full gap-space-lg max-w-4xl mx-auto">
+
+        <div class="flex flex-col">
+          <div class="flex items-center gap-space-2xs text-secondary mb-space-2xs">
+            <span class="font-sans text-label-sm tracking-wider uppercase">Configurações</span>
+            <span class="text-on-surface-variant font-sans text-label-sm">/</span>
+            <span class="font-sans text-label-sm tracking-wider uppercase text-on-surface-variant">Perfil</span>
+          </div>
+          <h1 class="font-poppins text-headline-lg text-primary tracking-tight">Perfil do Usuário</h1>
+          <p class="font-sans text-body-md text-on-surface-variant mt-space-2xs">Gerencie seus dados pessoais, informações de contato e credenciais de acesso.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+          <!-- Card de Avatar -->
+          <div class="bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col items-center text-center gap-space-md">
+            <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary text-4xl font-poppins font-bold">
+              CM
+            </div>
+            <div class="flex flex-col">
+              <h2 id="profile-name" class="font-poppins text-headline-sm text-primary">Carlos Mendes</h2>
+              <span class="font-sans text-body-sm text-on-surface-variant">Síndico Geral</span>
+            </div>
+            <button class="px-space-md py-1.5 rounded bg-surface-container hover:bg-surface-container-low text-primary font-sans text-label-md font-semibold transition-colors">
+              Alterar Foto
+            </button>
+          </div>
+
+          <!-- Formulário de Dados -->
+          <div class="md:col-span-2 bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col gap-space-lg">
+            <h2 class="font-poppins text-headline-sm text-primary">Informações Pessoais</h2>
+
+            <form id="profile-form" class="flex flex-col gap-space-md">
+              <div class="flex flex-col gap-1">
+                <label for="nome_completo" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Nome Completo</label>
+                <input type="text" id="nome_completo" value="Carlos Mendes" required
+                       class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary transition-all"/>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+                <div class="flex flex-col gap-1">
+                  <label for="email" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">E-mail (Login)</label>
+                  <input type="email" id="email" value="carlos.mendes@sgcs.com.br" readonly
+                         class="w-full h-9 px-space-sm bg-surface-container-low/50 text-on-surface-variant font-sans text-body-md rounded border border-outline-variant/20 outline-none cursor-not-allowed"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <label for="telefone" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Telefone de Contato</label>
+                  <input type="tel" id="telefone" value="(11) 98765-4321" required
+                         class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary transition-all"/>
+                </div>
+              </div>
+
+              <div class="h-[1px] bg-outline-variant/30 my-space-xs"></div>
+
+              <h2 class="font-poppins text-headline-sm text-primary">Alterar Senha</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+                <div class="flex flex-col gap-1">
+                  <label for="new_password" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Nova Senha</label>
+                  <input type="password" id="new_password" placeholder="Mínimo 6 caracteres"
+                         class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary transition-all"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <label for="confirm_password" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Confirmar Nova Senha</label>
+                  <input type="password" id="confirm_password" placeholder="Repita a senha"
+                         class="w-full h-9 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary transition-all"/>
+                </div>
+              </div>
+
+              <div class="flex justify-end mt-space-sm">
+                <button type="submit" class="px-space-lg py-2 rounded bg-primary-container hover:bg-primary text-on-primary font-poppins font-semibold text-body-md shadow-sm transition-colors cursor-pointer flex items-center gap-space-2xs">
+                  <span class="material-symbols-outlined text-[18px]">save</span>
+                  <span>Salvar Alterações</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Notyf CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="/sgcs/assets/js/config.js"></script>
+  <script src="/sgcs/assets/js/supabase.js"></script>
+  <script src="/sgcs/assets/js/utils.js"></script>
+  <script src="/sgcs/assets/js/validators.js"></script>
+  <script src="/sgcs/assets/js/ui.js"></script>
+  <script src="/sgcs/assets/js/auth.js"></script>
+  <script src="/sgcs/assets/js/layout.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      SGCS_AUTH.requireAuth();
+      SGCS_LAYOUT.initLayout('perfil');
+
+      const user = SGCS_AUTH.getUser();
+      if (user) {
+        document.getElementById('nome_completo').value = user.nome_completo || '';
+        document.getElementById('email').value = user.email || '';
+        document.getElementById('profile-name').textContent = user.nome_completo || 'Carlos Mendes';
+      }
+
+      document.getElementById('profile-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const newPass = document.getElementById('new_password').value;
+        const confPass = document.getElementById('confirm_password').value;
+
+        if (newPass && newPass !== confPass) {
+          SGCS_UI.showToast('As senhas digitadas não coincidem.', 'error');
+          return;
+        }
+
+        if (newPass && newPass.length < 6) {
+          SGCS_UI.showToast('A senha deve ter no mínimo 6 caracteres.', 'error');
+          return;
+        }
+
+        SGCS_UI.showToast('Perfil atualizado com sucesso!');
+      });
+    });
+  </script>
+</body>
+</html>
