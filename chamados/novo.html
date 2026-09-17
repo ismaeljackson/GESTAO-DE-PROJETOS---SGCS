@@ -52,7 +52,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="/assets/css/app.css"/>
+  <link rel="stylesheet" href="../assets/css/app.css"/>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased">
 
@@ -67,7 +67,7 @@
         <!-- Header -->
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <a href="/chamados/index.html" class="flex items-center text-primary hover:text-secondary font-semibold text-sm">
+            <a href="./index.html" class="flex items-center text-primary hover:text-secondary font-semibold text-sm">
               <span class="material-symbols-outlined text-[20px]">arrow_back</span>
               <span>Voltar</span>
             </a>
@@ -158,7 +158,7 @@
           </div>
 
           <div class="flex items-center justify-end gap-3 pt-4 border-t border-outline-variant/20">
-            <a href="/chamados/index.html" class="px-5 py-2.5 rounded font-poppins text-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">Cancelar</a>
+            <a href="./index.html" class="px-5 py-2.5 rounded font-poppins text-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">Cancelar</a>
             <button type="submit" id="btn-submit" class="px-6 py-2.5 rounded font-poppins font-semibold text-sm bg-primary hover:bg-primary-container text-white shadow-sm transition-colors flex items-center gap-2">
               <span class="material-symbols-outlined text-[18px]">send</span>
               <span>Criar Chamado</span>
@@ -174,12 +174,12 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script type="module">
-    import { requireAuth } from '/assets/js/auth.js';
-    import { initLayout } from '/assets/js/layout.js';
-    import { showToast, showLoader, hideLoader } from '/assets/js/ui.js';
-    import { createChamado } from '/assets/js/chamados-service.js';
-    import { getCondominios } from '/assets/js/condominios-service.js';
-    import { getTiposChamado, getSubtiposChamado } from '/assets/js/tipos-service.js';
+    import { requireAuth } from '../assets/js/auth.js';
+    import { initLayout } from '../assets/js/layout.js';
+    import { showToast, showLoader, hideLoader } from '../assets/js/ui.js';
+    import { createChamado } from '../assets/js/chamados-service.js';
+    import { getCondominios } from '../assets/js/condominios-service.js';
+    import { getTiposChamado, getSubtiposChamado } from '../assets/js/tipos-service.js';
 
     async function loadFormOptions() {
       showLoader();
@@ -268,7 +268,7 @@
         const criado = await createChamado(payload);
         showToast('Chamado criado com sucesso!');
         setTimeout(() => {
-          window.location.href = `/chamados/detalhe.html?id=${criado.id}`;
+          window.location.href = `./detalhe.html?id=${criado.id}`;
         }, 800);
       } catch (err) {
         showToast(err.message || 'Erro ao criar chamado', 'error');

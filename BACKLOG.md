@@ -41,3 +41,9 @@
 - **Tipo:** implementação
 - **Descrição:** Implementada a tela de perfil do síndico em `configuracoes/perfil.html` para atualização de dados, garantindo ausência de emojis e alinhamento com as diretrizes do Design System.
 - **Status:** resolvido
+
+## 2026-09-17 01:15
+- **Tarefa:** Tarefa 8 — Correção de URLs e Caminhos Relativos (Compatibilidade GitHub Pages)
+- **Tipo:** correção
+- **Descrição:** Substituídas todas as URLs absolutas iniciadas com `/` por caminhos relativos em HTML e JS para compatibilizar o carregamento de CSS, JS e navegação em subdiretórios (ex: GitHub Pages).
+- **Status:** resolvido

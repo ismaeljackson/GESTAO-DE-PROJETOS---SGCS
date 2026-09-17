@@ -1,6 +1,12 @@
 import { getCurrentUserProfile, signOut } from './auth.js';
 
 export function renderSidebar(activePage = 'dashboard', unreadCount = 0) {
+  // Define caminho base dependendo de estar em subpasta ou raiz
+  const isInSubfolder = window.location.pathname.includes('/chamados/') ||
+                        window.location.pathname.includes('/condominios/') ||
+                        window.location.pathname.includes('/configuracoes/');
+  const basePath = isInSubfolder ? '../' : './';
+
   return `
     <aside class="fixed left-0 top-0 h-full w-64 bg-primary text-on-primary z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
       <div class="flex flex-col">
@@ -14,26 +20,26 @@ export function renderSidebar(activePage = 'dashboard', unreadCount = 0) {
           <span class="font-label-sm text-label-sm uppercase tracking-wider text-outline-variant font-bold">Menu Operacional</span>
         </div>
         <nav class="flex flex-col gap-space-2xs px-space-xs">
-          <a href="/dashboard.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'dashboard' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+          <a href="${basePath}dashboard.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'dashboard' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
             <span class="material-symbols-outlined text-[20px]">space_dashboard</span>
             <span class="font-label-md text-label-md">Dashboard</span>
           </a>
-          <a href="/chamados/index.html" class="flex items-center justify-between px-space-sm py-space-xs rounded transition-colors ${activePage === 'chamados' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+          <a href="${basePath}chamados/index.html" class="flex items-center justify-between px-space-sm py-space-xs rounded transition-colors ${activePage === 'chamados' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
             <div class="flex items-center gap-space-sm">
               <span class="material-symbols-outlined text-[20px]">assignment</span>
               <span class="font-label-md text-label-md">Chamados</span>
             </div>
             ${unreadCount > 0 ? `<span class="px-space-2xs py-[2px] rounded-full bg-error text-on-error font-label-sm text-label-sm leading-none">${unreadCount}</span>` : ''}
           </a>
-          <a href="/condominios/index.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'condominios' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+          <a href="${basePath}condominios/index.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'condominios' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
             <span class="material-symbols-outlined text-[20px]">apartment</span>
             <span class="font-label-md text-label-md">Condomínios</span>
           </a>
-          <a href="/configuracoes/tipos-chamado.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'tipos-chamado' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+          <a href="${basePath}configuracoes/tipos-chamado.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'tipos-chamado' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
             <span class="material-symbols-outlined text-[20px]">category</span>
             <span class="font-label-md text-label-md">Tipos de Chamado</span>
           </a>
-          <a href="/configuracoes/perfil.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'perfil' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+          <a href="${basePath}configuracoes/perfil.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePage === 'perfil' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
             <span class="material-symbols-outlined text-[20px]">tune</span>
             <span class="font-label-md text-label-md">Configurações</span>
           </a>
@@ -62,6 +68,11 @@ export function renderSidebar(activePage = 'dashboard', unreadCount = 0) {
 }
 
 export function renderHeader(activeTitle = 'Administração') {
+  const isInSubfolder = window.location.pathname.includes('/chamados/') ||
+                        window.location.pathname.includes('/condominios/') ||
+                        window.location.pathname.includes('/configuracoes/');
+  const basePath = isInSubfolder ? '../' : './';
+
   return `
     <header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-margin-desktop">
       <div class="flex items-center gap-space-md">
@@ -77,7 +88,7 @@ export function renderHeader(activeTitle = 'Administração') {
           <span id="notif-badge" class="hidden absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
         </button>
         <div class="h-6 w-[1px] bg-outline-variant"></div>
-        <a href="/configuracoes/perfil.html" class="flex items-center gap-space-sm cursor-pointer p-space-2xs rounded hover:bg-surface-container-high transition-colors">
+        <a href="${basePath}configuracoes/perfil.html" class="flex items-center gap-space-sm cursor-pointer p-space-2xs rounded hover:bg-surface-container-high transition-colors">
           <div class="flex flex-col text-right">
             <span id="header-user-name" class="font-label-md text-label-md font-bold text-on-surface leading-tight">Síndico</span>
             <span class="font-body-sm text-body-sm text-on-surface-variant leading-none">Administrador Ativo</span>

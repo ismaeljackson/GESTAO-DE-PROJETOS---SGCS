@@ -54,7 +54,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="/assets/css/app.css"/>
+  <link rel="stylesheet" href="./assets/css/app.css"/>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased">
 
@@ -80,11 +80,11 @@
           </div>
 
           <div class="flex flex-wrap items-center gap-3">
-            <a href="/condominios/index.html" class="h-9 px-4 rounded bg-surface-container-low hover:bg-surface-container text-primary font-poppins font-semibold text-xs flex items-center gap-1.5 transition-colors border border-outline-variant/30">
+            <a href="./condominios/index.html" class="h-9 px-4 rounded bg-surface-container-low hover:bg-surface-container text-primary font-poppins font-semibold text-xs flex items-center gap-1.5 transition-colors border border-outline-variant/30">
               <span class="material-symbols-outlined text-[18px]">add_business</span>
               <span>Novo Condomínio</span>
             </a>
-            <a href="/chamados/novo.html" class="h-9 px-4 rounded bg-primary hover:bg-primary-container text-white font-poppins font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-colors">
+            <a href="./chamados/novo.html" class="h-9 px-4 rounded bg-primary hover:bg-primary-container text-white font-poppins font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-colors">
               <span class="material-symbols-outlined text-[18px]">add_task</span>
               <span>Novo Chamado</span>
             </a>
@@ -171,7 +171,7 @@
               <span class="material-symbols-outlined text-primary text-[20px]">assignment</span>
               <h2 class="font-poppins font-semibold text-base text-primary">Últimos Chamados Registrados</h2>
             </div>
-            <a href="/chamados/index.html" class="text-xs font-poppins font-semibold text-secondary hover:text-primary flex items-center gap-1">
+            <a href="./chamados/index.html" class="text-xs font-poppins font-semibold text-secondary hover:text-primary flex items-center gap-1">
               <span>Ver todos</span>
               <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
             </a>
@@ -204,10 +204,10 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script type="module">
-    import { requireAuth } from '/assets/js/auth.js';
-    import { initLayout } from '/assets/js/layout.js';
-    import { showToast, showLoader, hideLoader, statusBadge, priorityBadge } from '/assets/js/ui.js';
-    import { getDashboardStats, getChamados } from '/assets/js/chamados-service.js';
+    import { requireAuth } from './assets/js/auth.js';
+    import { initLayout } from './assets/js/layout.js';
+    import { showToast, showLoader, hideLoader, statusBadge, priorityBadge } from './assets/js/ui.js';
+    import { getDashboardStats, getChamados } from './assets/js/chamados-service.js';
 
     async function loadDashboard() {
       showLoader();
@@ -254,7 +254,7 @@
           <td class="py-3 px-4">${priorityBadge(c.prioridade)}</td>
           <td class="py-3 px-4">${statusBadge(c.status)}</td>
           <td class="py-3 px-4 text-right">
-            <a href="/chamados/detalhe.html?id=${c.id}" class="inline-flex items-center gap-1 px-3 py-1 rounded bg-surface-container-high hover:bg-primary hover:text-white text-primary text-xs font-bold transition-colors">
+            <a href="./chamados/detalhe.html?id=${c.id}" class="inline-flex items-center gap-1 px-3 py-1 rounded bg-surface-container-high hover:bg-primary hover:text-white text-primary text-xs font-bold transition-colors">
               <span>Detalhes</span>
               <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </a>

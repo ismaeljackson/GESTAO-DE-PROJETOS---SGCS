@@ -53,7 +53,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="/assets/css/app.css"/>
+  <link rel="stylesheet" href="../assets/css/app.css"/>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased">
 
@@ -71,7 +71,7 @@
             <h1 class="font-poppins font-bold text-2xl text-primary tracking-tight">Gestão de Chamados</h1>
             <p class="text-sm text-on-surface-variant mt-0.5">Centralize e acompanhe solicitações de todos os condomínios em tempo real.</p>
           </div>
-          <a href="/chamados/novo.html" class="flex items-center gap-2 bg-primary hover:bg-primary-container text-white px-4 py-2 rounded font-poppins font-semibold text-sm shadow-sm transition-colors cursor-pointer self-start md:self-auto">
+          <a href="./novo.html" class="flex items-center gap-2 bg-primary hover:bg-primary-container text-white px-4 py-2 rounded font-poppins font-semibold text-sm shadow-sm transition-colors cursor-pointer self-start md:self-auto">
             <span class="material-symbols-outlined text-[18px]">add</span>
             <span>Novo Chamado</span>
           </a>
@@ -142,12 +142,12 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script type="module">
-    import { requireAuth } from '/assets/js/auth.js';
-    import { initLayout } from '/assets/js/layout.js';
-    import { showToast, showLoader, hideLoader, statusBadge, priorityBadge } from '/assets/js/ui.js';
-    import { getChamados } from '/assets/js/chamados-service.js';
-    import { getCondominios } from '/assets/js/condominios-service.js';
-    import { getTiposChamado } from '/assets/js/tipos-service.js';
+    import { requireAuth } from '../assets/js/auth.js';
+    import { initLayout } from '../assets/js/layout.js';
+    import { showToast, showLoader, hideLoader, statusBadge, priorityBadge } from '../assets/js/ui.js';
+    import { getChamados } from '../assets/js/chamados-service.js';
+    import { getCondominios } from '../assets/js/condominios-service.js';
+    import { getTiposChamado } from '../assets/js/tipos-service.js';
 
     let chamadosList = [];
 
@@ -218,7 +218,7 @@
           <td class="py-3 px-4">${priorityBadge(c.prioridade)}</td>
           <td class="py-3 px-4">${statusBadge(c.status)}</td>
           <td class="py-3 px-4 text-right">
-            <a href="/chamados/detalhe.html?id=${c.id}" class="inline-flex items-center gap-1 px-3 py-1 rounded bg-surface-container-high hover:bg-primary hover:text-white text-primary text-xs font-bold transition-colors">
+            <a href="./detalhe.html?id=${c.id}" class="inline-flex items-center gap-1 px-3 py-1 rounded bg-surface-container-high hover:bg-primary hover:text-white text-primary text-xs font-bold transition-colors">
               <span>Ver Detalhes</span>
               <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </a>

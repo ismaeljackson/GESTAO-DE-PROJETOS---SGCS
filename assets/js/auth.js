@@ -27,7 +27,10 @@ export async function signUp(email, password, nomeCompleto) {
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
   if (error) console.error('Erro ao sair:', error);
-  window.location.href = '/index.html';
+  const isInSubfolder = window.location.pathname.includes('/chamados/') ||
+                        window.location.pathname.includes('/condominios/') ||
+                        window.location.pathname.includes('/configuracoes/');
+  window.location.href = isInSubfolder ? '../index.html' : './index.html';
 }
 
 export async function getSession() {
@@ -59,7 +62,10 @@ export async function getCurrentUserProfile() {
 export async function requireAuth() {
   const session = await getSession();
   if (!session) {
-    window.location.href = '/index.html';
+    const isInSubfolder = window.location.pathname.includes('/chamados/') ||
+                          window.location.pathname.includes('/condominios/') ||
+                          window.location.pathname.includes('/configuracoes/');
+    window.location.href = isInSubfolder ? '../index.html' : './index.html';
     return null;
   }
   return session;

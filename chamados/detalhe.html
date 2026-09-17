@@ -54,7 +54,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="/assets/css/app.css"/>
+  <link rel="stylesheet" href="../assets/css/app.css"/>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased">
 
@@ -69,7 +69,7 @@
         <!-- Header Bar -->
         <div class="flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest p-space-md rounded-lg shadow-sm border border-outline-variant/30">
           <div class="flex items-center gap-space-md">
-            <a href="/chamados/index.html" class="flex items-center gap-space-xs text-primary hover:text-secondary font-semibold text-sm">
+            <a href="./index.html" class="flex items-center gap-space-xs text-primary hover:text-secondary font-semibold text-sm">
               <span class="material-symbols-outlined text-[18px]">arrow_back</span>
               <span>Voltar para chamados</span>
             </a>
@@ -242,11 +242,11 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script type="module">
-    import { requireAuth } from '/assets/js/auth.js';
-    import { initLayout } from '/assets/js/layout.js';
-    import { showToast, showLoader, hideLoader, statusBadge, priorityBadge } from '/assets/js/ui.js';
-    import { getChamadoById, updateChamadoStatus, updateChamadoPrioridade, getChamadoTimeline, addTimelineComentario } from '/assets/js/chamados-service.js';
-    import { getChamadoAnexos, uploadAnexo } from '/assets/js/anexos-service.js';
+    import { requireAuth } from '../assets/js/auth.js';
+    import { initLayout } from '../assets/js/layout.js';
+    import { showToast, showLoader, hideLoader, statusBadge, priorityBadge } from '../assets/js/ui.js';
+    import { getChamadoById, updateChamadoStatus, updateChamadoPrioridade, getChamadoTimeline, addTimelineComentario } from '../assets/js/chamados-service.js';
+    import { getChamadoAnexos, uploadAnexo } from '../assets/js/anexos-service.js';
 
     const urlParams = new URLSearchParams(window.location.search);
     const chamadoId = urlParams.get('id');
@@ -256,7 +256,7 @@
     async function loadChamadoDetails() {
       if (!chamadoId) {
         showToast('Chamado não especificado', 'error');
-        window.location.href = '/chamados/index.html';
+        window.location.href = './index.html';
         return;
       }
 
@@ -265,7 +265,7 @@
         currentChamado = await getChamadoById(chamadoId);
         if (!currentChamado) {
           showToast('Chamado não encontrado', 'error');
-          window.location.href = '/chamados/index.html';
+          window.location.href = './index.html';
           return;
         }
 

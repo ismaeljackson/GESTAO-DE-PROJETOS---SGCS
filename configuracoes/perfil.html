@@ -52,7 +52,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="/assets/css/app.css"/>
+  <link rel="stylesheet" href="../assets/css/app.css"/>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased">
 
@@ -114,10 +114,10 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script type="module">
-    import { requireAuth, getCurrentUserProfile } from '/assets/js/auth.js';
-    import { initLayout } from '/assets/js/layout.js';
-    import { showToast, showLoader, hideLoader } from '/assets/js/ui.js';
-    import { supabase } from '/assets/js/supabase.js';
+    import { requireAuth, getCurrentUserProfile } from '../assets/js/auth.js';
+    import { initLayout } from '../assets/js/layout.js';
+    import { showToast, showLoader, hideLoader } from '../assets/js/ui.js';
+    import { supabase } from '../assets/js/supabase.js';
 
     async function loadProfile() {
       showLoader();

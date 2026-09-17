@@ -43,7 +43,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="/assets/css/app.css"/>
+  <link rel="stylesheet" href="./assets/css/app.css"/>
 </head>
 <body class="bg-background font-sans text-on-surface antialiased min-h-screen flex items-center justify-center p-4">
 
@@ -92,8 +92,8 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script type="module">
-    import { signIn } from '/assets/js/auth.js';
-    import { showToast } from '/assets/js/ui.js';
+    import { signIn } from './assets/js/auth.js';
+    import { showToast } from './assets/js/ui.js';
 
     const loginForm = document.getElementById('login-form');
     const btnSubmit = document.getElementById('btn-submit');
@@ -110,7 +110,7 @@
         await signIn(email, password);
         showToast('Login realizado com sucesso!', 'success');
         setTimeout(() => {
-          window.location.href = '/dashboard.html';
+          window.location.href = './dashboard.html';
         }, 800);
       } catch (err) {
         showToast(err.message || 'Erro ao realizar login. Verifique suas credenciais.', 'error');
