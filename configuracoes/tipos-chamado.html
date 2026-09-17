@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tipos e Subtipos de Chamado — SGCS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#002451",
+            "primary-container": "#0e3a73",
+            secondary: "#346092",
+            "secondary-container": "#9cc7fe",
+            background: "#f8f9ff",
+            surface: "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            outline: "#737781",
+            "outline-variant": "#c3c6d1",
+            error: "#ba1a1a"
+          },
+          fontFamily: {
+            poppins: ["Poppins", "sans-serif"],
+            sans: ["Open Sans", "sans-serif"]
+          },
+          spacing: {
+            'space-xs': '0.5rem',
+            'space-sm': '0.75rem',
+            'space-md': '1rem',
+            'space-lg': '1.25rem',
+            'space-xl': '1.5rem',
+            'space-2xl': '2rem',
+            'margin-desktop': '2rem',
+            'gutter-desktop': '1.5rem'
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased">
+
+  <div id="app-sidebar"></div>
+
+  <div class="pl-64 flex flex-col min-h-screen">
+    <div id="app-header"></div>
+
+    <main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl">
+      <div class="flex flex-col w-full gap-6">
+
+        <!-- Page Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 class="font-poppins font-bold text-2xl text-primary tracking-tight">Tipos e Subtipos de Chamado</h1>
+            <p class="text-sm text-on-surface-variant mt-0.5">Gerencie as categorias utilizadas para classificar as solicitações dos moradores.</p>
+          </div>
+          <button type="button" id="btn-novo-tipo" class="flex items-center gap-2 bg-primary-container hover:bg-primary text-white px-4 py-2 rounded font-poppins font-semibold text-sm shadow-sm transition-colors cursor-pointer self-start sm:self-auto">
+            <span class="material-symbols-outlined text-[18px]">add_circle</span>
+            <span>Novo Tipo</span>
+          </button>
+        </div>
+
+        <!-- Layout Grid: Tipos Table + Subtipos List -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+          <!-- Column 1: Tipos (7 col) -->
+          <div class="lg:col-span-7 bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant/30 overflow-hidden flex flex-col">
+            <div class="p-4 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-between">
+              <h2 class="font-poppins font-semibold text-base text-primary">Categorias Principais</h2>
+              <span id="tipos-count" class="text-xs text-on-surface-variant font-semibold bg-surface-container px-2 py-0.5 rounded">0 tipos</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-surface-container-low text-on-surface-variant border-b border-outline-variant/20">
+                    <th class="py-2.5 px-4 text-xs uppercase font-bold tracking-wider">Ícone & Cor</th>
+                    <th class="py-2.5 px-4 text-xs uppercase font-bold tracking-wider">Nome</th>
+                    <th class="py-2.5 px-4 text-xs uppercase font-bold tracking-wider">Descrição</th>
+                    <th class="py-2.5 px-4 text-xs uppercase font-bold tracking-wider text-right">Ação</th>
+                  </tr>
+                </thead>
+                <tbody id="tipos-tbody" class="divide-y divide-outline-variant/20 text-sm">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Column 2: Subtipos (5 col) -->
+          <div class="lg:col-span-5 bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant/30 flex flex-col">
+            <div class="p-4 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-between">
+              <div>
+                <h2 class="font-poppins font-semibold text-base text-primary">Subtipos Selecionados</h2>
+                <p id="subtipos-tipo-nome" class="text-xs text-on-surface-variant">Selecione um tipo ao lado para ver os subtipos</p>
+              </div>
+              <button type="button" id="btn-novo-subtipo" class="hidden flex items-center gap-1 bg-secondary text-white px-3 py-1 rounded text-xs font-semibold hover:bg-primary transition-colors">
+                <span class="material-symbols-outlined text-[16px]">add</span>
+                <span>Subtipo</span>
+              </button>
+            </div>
+
+            <div id="subtipos-container" class="p-4 flex flex-col gap-2">
+              <p class="text-sm text-outline italic text-center py-6">Nenhum tipo selecionado.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Novo Tipo -->
+  <div id="modal-tipo" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+    <div id="modal-tipo-backdrop" class="fixed inset-0 bg-primary/40 backdrop-blur-xs transition-opacity duration-300"></div>
+    <div class="fixed inset-0 flex items-center justify-center p-4">
+      <div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-2xl flex flex-col overflow-hidden border border-outline-variant/30">
+        <div class="p-4 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-between">
+          <h2 class="font-poppins font-bold text-lg text-primary">Novo Tipo de Chamado</h2>
+          <button type="button" id="btn-close-modal-tipo" class="text-on-surface-variant hover:text-primary">
+            <span class="material-symbols-outlined text-[24px]">close</span>
+          </button>
+        </div>
+
+        <form id="form-tipo" class="p-5 flex flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="tipo-nome" class="text-xs font-semibold uppercase tracking-wider text-on-surface">Nome da Categoria *</label>
+            <input type="text" id="tipo-nome" required placeholder="Ex: Manutenção, Limpeza" class="w-full h-9 px-3 bg-surface-container-low text-on-surface text-sm rounded outline-none border border-outline-variant/30 focus:border-secondary"/>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="tipo-descricao" class="text-xs font-semibold uppercase tracking-wider text-on-surface">Descrição</label>
+            <textarea id="tipo-descricao" rows="2" placeholder="Resumo dos tipos de ocorrência..." class="w-full p-3 bg-surface-container-low text-on-surface text-sm rounded outline-none border border-outline-variant/30 focus:border-secondary resize-none"></textarea>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1">
+              <label for="tipo-cor" class="text-xs font-semibold uppercase tracking-wider text-on-surface">Cor de Identificação</label>
+              <input type="color" id="tipo-cor" value="#3B82F6" class="w-full h-9 p-1 bg-surface-container-low rounded border border-outline-variant/30 cursor-pointer"/>
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="tipo-icone" class="text-xs font-semibold uppercase tracking-wider text-on-surface">Ícone (Material Symbols)</label>
+              <input type="text" id="tipo-icone" value="build" placeholder="wrench, shield, etc" class="w-full h-9 px-3 bg-surface-container-low text-on-surface text-sm rounded outline-none border border-outline-variant/30 focus:border-secondary"/>
+            </div>
+          </div>
+        </form>
+
+        <div class="p-4 bg-surface-container-low border-t border-outline-variant/30 flex justify-end gap-2">
+          <button type="button" id="btn-cancel-modal-tipo" class="px-4 py-2 text-sm font-poppins text-on-surface-variant hover:bg-surface-container-high rounded">Cancelar</button>
+          <button type="button" id="btn-save-tipo" class="px-4 py-2 text-sm font-poppins font-semibold bg-primary text-white rounded hover:bg-primary-container shadow-sm">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Novo Subtipo -->
+  <div id="modal-subtipo" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+    <div id="modal-subtipo-backdrop" class="fixed inset-0 bg-primary/40 backdrop-blur-xs transition-opacity duration-300"></div>
+    <div class="fixed inset-0 flex items-center justify-center p-4">
+      <div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-2xl flex flex-col overflow-hidden border border-outline-variant/30">
+        <div class="p-4 bg-surface-container-low border-b border-outline-variant/30 flex items-center justify-between">
+          <h2 class="font-poppins font-bold text-lg text-primary">Novo Subtipo</h2>
+          <button type="button" id="btn-close-modal-subtipo" class="text-on-surface-variant hover:text-primary">
+            <span class="material-symbols-outlined text-[24px]">close</span>
+          </button>
+        </div>
+
+        <form id="form-subtipo" class="p-5 flex flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="subtipo-nome" class="text-xs font-semibold uppercase tracking-wider text-on-surface">Nome do Subtipo *</label>
+            <input type="text" id="subtipo-nome" required placeholder="Ex: Hidráulica, Elevador" class="w-full h-9 px-3 bg-surface-container-low text-on-surface text-sm rounded outline-none border border-outline-variant/30 focus:border-secondary"/>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="subtipo-descricao" class="text-xs font-semibold uppercase tracking-wider text-on-surface">Descrição</label>
+            <textarea id="subtipo-descricao" rows="2" placeholder="Detalhes do subtipo..." class="w-full p-3 bg-surface-container-low text-on-surface text-sm rounded outline-none border border-outline-variant/30 focus:border-secondary resize-none"></textarea>
+          </div>
+        </form>
+
+        <div class="p-4 bg-surface-container-low border-t border-outline-variant/30 flex justify-end gap-2">
+          <button type="button" id="btn-cancel-modal-subtipo" class="px-4 py-2 text-sm font-poppins text-on-surface-variant hover:bg-surface-container-high rounded">Cancelar</button>
+          <button type="button" id="btn-save-subtipo" class="px-4 py-2 text-sm font-poppins font-semibold bg-primary text-white rounded hover:bg-primary-container shadow-sm">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <script type="module">
+    import { requireAuth } from '/assets/js/auth.js';
+    import { initLayout } from '/assets/js/layout.js';
+    import { showToast, showLoader, hideLoader } from '/assets/js/ui.js';
+    import { getTiposChamado, createTipoChamado, getSubtiposChamado, createSubtipoChamado } from '/assets/js/tipos-service.js';
+
+    let tiposList = [];
+    let selectedTipo = null;
+
+    async function loadTipos() {
+      showLoader();
+      try {
+        tiposList = await getTiposChamado();
+        renderTiposTable(tiposList);
+      } catch (err) {
+        showToast('Erro ao carregar tipos de chamado', 'error');
+      } finally {
+        hideLoader();
+      }
+    }
+
+    function renderTiposTable(items) {
+      const tbody = document.getElementById('tipos-tbody');
+      const count = document.getElementById('tipos-count');
+
+      count.textContent = `${items.length} tipo(s)`;
+
+      if (!items || items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-outline italic">Nenhum tipo cadastrado.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = items.map(t => `
+        <tr class="hover:bg-surface-container-low/60 transition-colors cursor-pointer ${selectedTipo?.id === t.id ? 'bg-surface-container' : ''}" data-id="${t.id}">
+          <td class="py-3 px-4">
+            <div class="w-8 h-8 rounded flex items-center justify-center text-white font-bold" style="background-color: ${t.cor || '#3B82F6'}">
+              <span class="material-symbols-outlined text-[18px]">${t.icone || 'build'}</span>
+            </div>
+          </td>
+          <td class="py-3 px-4 font-semibold text-primary">${t.nome}</td>
+          <td class="py-3 px-4 text-on-surface-variant text-xs">${t.descricao || '-'}</td>
+          <td class="py-3 px-4 text-right">
+            <button type="button" class="btn-select-tipo text-xs font-semibold text-secondary hover:text-primary" data-id="${t.id}">
+              Ver Subtipos
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      document.querySelectorAll('#tipos-tbody tr').forEach(row => {
+        row.addEventListener('click', () => {
+          const id = row.getAttribute('data-id');
+          const found = tiposList.find(t => t.id === id);
+          if (found) selectTipo(found);
+        });
+      });
+    }
+
+    async function selectTipo(tipo) {
+      selectedTipo = tipo;
+      renderTiposTable(tiposList);
+
+      const nomeEl = document.getElementById('subtipos-tipo-nome');
+      const btnNovoSubtipo = document.getElementById('btn-novo-subtipo');
+      nomeEl.textContent = `Subtipos de: ${tipo.nome}`;
+      btnNovoSubtipo.classList.remove('hidden');
+
+      showLoader();
+      try {
+        const subtipos = await getSubtiposChamado(tipo.id);
+        renderSubtiposList(subtipos);
+      } catch (err) {
+        showToast('Erro ao buscar subtipos', 'error');
+      } finally {
+        hideLoader();
+      }
+    }
+
+    function renderSubtiposList(items) {
+      const container = document.getElementById('subtipos-container');
+      if (!items || items.length === 0) {
+        container.innerHTML = `<p class="text-sm text-outline italic text-center py-6">Nenhum subtipo cadastrado para esta categoria.</p>`;
+        return;
+      }
+
+      container.innerHTML = items.map(s => `
+        <div class="p-3 bg-surface-container-low rounded border border-outline-variant/20 flex flex-col gap-1">
+          <span class="font-semibold text-sm text-on-surface">${s.nome}</span>
+          ${s.descricao ? `<span class="text-xs text-on-surface-variant">${s.descricao}</span>` : ''}
+        </div>
+      `).join('');
+    }
+
+    // Modal Tipo
+    const modalTipo = document.getElementById('modal-tipo');
+    document.getElementById('btn-novo-tipo').addEventListener('click', () => modalTipo.classList.remove('hidden'));
+    document.getElementById('btn-close-modal-tipo').addEventListener('click', () => modalTipo.classList.add('hidden'));
+    document.getElementById('btn-cancel-modal-tipo').addEventListener('click', () => modalTipo.classList.add('hidden'));
+    document.getElementById('modal-tipo-backdrop').addEventListener('click', () => modalTipo.classList.add('hidden'));
+
+    document.getElementById('btn-save-tipo').addEventListener('click', async () => {
+      const nome = document.getElementById('tipo-nome').value.trim();
+      const descricao = document.getElementById('tipo-descricao').value.trim();
+      const cor = document.getElementById('tipo-cor').value;
+      const icone = document.getElementById('tipo-icone').value.trim();
+
+      if (!nome) {
+        showToast('Informe o nome da categoria', 'error');
+        return;
+      }
+
+      try {
+        await createTipoChamado({ nome, descricao, cor, icone });
+        showToast('Tipo de chamado criado com sucesso!');
+        modalTipo.classList.add('hidden');
+        document.getElementById('form-tipo').reset();
+        loadTipos();
+      } catch (err) {
+        showToast(err.message || 'Erro ao criar tipo', 'error');
+      }
+    });
+
+    // Modal Subtipo
+    const modalSubtipo = document.getElementById('modal-subtipo');
+    document.getElementById('btn-novo-subtipo').addEventListener('click', () => modalSubtipo.classList.remove('hidden'));
+    document.getElementById('btn-close-modal-subtipo').addEventListener('click', () => modalSubtipo.classList.add('hidden'));
+    document.getElementById('btn-cancel-modal-subtipo').addEventListener('click', () => modalSubtipo.classList.add('hidden'));
+    document.getElementById('modal-subtipo-backdrop').addEventListener('click', () => modalSubtipo.classList.add('hidden'));
+
+    document.getElementById('btn-save-subtipo').addEventListener('click', async () => {
+      if (!selectedTipo) return;
+      const nome = document.getElementById('subtipo-nome').value.trim();
+      const descricao = document.getElementById('subtipo-descricao').value.trim();
+
+      if (!nome) {
+        showToast('Informe o nome do subtipo', 'error');
+        return;
+      }
+
+      try {
+        await createSubtipoChamado({ tipo_id: selectedTipo.id, nome, descricao });
+        showToast('Subtipo criado com sucesso!');
+        modalSubtipo.classList.add('hidden');
+        document.getElementById('form-subtipo').reset();
+        selectTipo(selectedTipo);
+      } catch (err) {
+        showToast(err.message || 'Erro ao criar subtipo', 'error');
+      }
+    });
+
+    // Init
+    document.addEventListener('DOMContentLoaded', async () => {
+      await requireAuth();
+      await initLayout('tipos-chamado', 'Tipos de Chamado');
+      loadTipos();
+    });
+  </script>
+</body>
+</html>
