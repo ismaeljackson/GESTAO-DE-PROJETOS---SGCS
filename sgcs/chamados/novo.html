@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGCS — Abertura de Chamado</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002451",
+            "primary-container": "#0e3a73",
+            "secondary": "#346092",
+            "secondary-container": "#9cc7fe",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            "on-primary": "#ffffff",
+            "outline": "#737781",
+            "outline-variant": "#c3c6d1",
+            "error": "#ba1a1a"
+          },
+          spacing: {
+            "space-md": "1rem",
+            "space-xs": "0.5rem",
+            "space-2xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2rem",
+            "space-lg": "1.25rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+  <link rel="stylesheet" href="/sgcs/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased">
+
+  <div id="sgcs-sidebar-container"></div>
+
+  <div class="pl-64 flex flex-col min-h-screen">
+    <div id="sgcs-header-container"></div>
+
+    <main class="w-full pt-16 bg-background flex-1 px-gutter-desktop py-space-xl">
+      <div class="flex flex-col w-full gap-space-lg max-w-4xl mx-auto">
+
+        <div class="flex items-center gap-space-md">
+          <a href="/sgcs/chamados/index.html" class="flex items-center gap-space-xs text-primary hover:text-secondary transition-colors font-sans text-label-md">
+            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+            <span>Voltar para listagem</span>
+          </a>
+          <span class="text-outline">/</span>
+          <span class="font-sans text-label-sm uppercase tracking-wider text-on-surface-variant">Novo Chamado</span>
+        </div>
+
+        <div class="bg-surface-container-lowest p-space-xl rounded shadow-sm flex flex-col gap-space-lg">
+          <div class="flex flex-col border-b border-surface-container pb-space-md">
+            <h1 class="font-poppins text-headline-lg text-primary tracking-tight">Abertura de Chamado Operacional</h1>
+            <p class="font-sans text-body-md text-on-surface-variant mt-space-2xs">Preencha os campos abaixo para registrar a demanda e gerar a ordem de serviço.</p>
+          </div>
+
+          <form id="novo-chamado-form" class="flex flex-col gap-space-lg">
+
+            <!-- Seção 1: Condomínio e Categoria -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+              <div class="flex flex-col gap-1">
+                <label for="condominio_id" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Condomínio *</label>
+                <select id="condominio_id" required class="w-full h-10 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+                  <option value="">Selecione o condomínio...</option>
+                  <option value="1">Edifício Aurora</option>
+                  <option value="2">Residencial Parque das Flores</option>
+                  <option value="3">Condomínio Grand Tower</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="tipo_id" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Tipo / Categoria *</label>
+                <select id="tipo_id" required class="w-full h-10 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+                  <option value="">Selecione a categoria...</option>
+                  <option value="manutencao">Manutenção</option>
+                  <option value="seguranca">Segurança</option>
+                  <option value="limpeza">Limpeza</option>
+                  <option value="financeiro">Financeiro</option>
+                  <option value="administrativo">Administrativo</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="subtipo_id" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Subtipo (Opcional)</label>
+                <select id="subtipo_id" class="w-full h-10 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+                  <option value="">Selecione o subtipo...</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Seção 2: Solicitante -->
+            <div class="p-space-md rounded bg-surface-container-low flex flex-col gap-space-md">
+              <span class="font-sans text-label-sm text-primary uppercase font-bold tracking-wider">Dados do Solicitante</span>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+                <div class="flex flex-col gap-1">
+                  <label for="solicitante_nome" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Nome *</label>
+                  <input type="text" id="solicitante_nome" required placeholder="Ex: João Silva"
+                         class="w-full h-9 px-space-sm bg-surface-container-lowest text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <label for="solicitante_unidade" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Unidade / Bloco</label>
+                  <input type="text" id="solicitante_unidade" placeholder="Ex: Bloco B - Apto 101"
+                         class="w-full h-9 px-space-sm bg-surface-container-lowest text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <label for="solicitante_telefone" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Telefone</label>
+                  <input type="tel" id="solicitante_telefone" placeholder="(11) 98765-4321"
+                         class="w-full h-9 px-space-sm bg-surface-container-lowest text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <label for="solicitante_email" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">E-mail</label>
+                  <input type="email" id="solicitante_email" placeholder="joao@email.com"
+                         class="w-full h-9 px-space-sm bg-surface-container-lowest text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção 3: Detalhes da Ocorrência -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+              <div class="md:col-span-3 flex flex-col gap-1">
+                <label for="titulo" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Título Resumido *</label>
+                <input type="text" id="titulo" required maxlength="150" placeholder="Ex: Vazamento no hall do Bloco B"
+                       class="w-full h-10 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary"/>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="prioridade" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Prioridade *</label>
+                <select id="prioridade" required class="w-full h-10 px-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary cursor-pointer">
+                  <option value="baixa">Baixa</option>
+                  <option value="media" selected>Média</option>
+                  <option value="alta">Alta</option>
+                  <option value="critica">Crítica (Urgente)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="descricao" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Descrição Detalhada *</label>
+              <textarea id="descricao" required rows="5" maxlength="2000" placeholder="Descreva os detalhes da ocorrência, localização exata e quaisquer observações relevantes..."
+                        class="w-full p-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline-variant/40 outline-none focus:ring-2 focus:ring-secondary resize-y"></textarea>
+            </div>
+
+            <!-- Seção 4: Upload de Anexos -->
+            <div class="flex flex-col gap-space-xs">
+              <label class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Anexar Documentos ou Fotos</label>
+              <div class="border-2 border-dashed border-outline-variant p-space-lg rounded bg-surface-container-low flex flex-col items-center justify-center text-center cursor-pointer hover:border-secondary transition-colors">
+                <span class="material-symbols-outlined text-outline text-[32px] mb-space-2xs">cloud_upload</span>
+                <span class="font-sans text-body-md font-semibold text-primary">Clique ou arraste arquivos aqui</span>
+                <span class="font-sans text-body-sm text-on-surface-variant">PNG, JPG, PDF até 5MB por arquivo</span>
+                <input type="file" id="anexos" multiple class="hidden"/>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-space-md pt-space-md border-t border-surface-container">
+              <a href="/sgcs/chamados/index.html" class="px-space-lg py-2.5 rounded font-sans text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                Cancelar
+              </a>
+              <button type="submit" class="px-space-xl py-2.5 rounded bg-primary hover:bg-primary-container text-on-primary font-poppins font-semibold text-body-md shadow-sm transition-colors cursor-pointer flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-[18px]">send</span>
+                <span>Registrar Chamado</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Notyf CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="/sgcs/assets/js/config.js"></script>
+  <script src="/sgcs/assets/js/supabase.js"></script>
+  <script src="/sgcs/assets/js/utils.js"></script>
+  <script src="/sgcs/assets/js/validators.js"></script>
+  <script src="/sgcs/assets/js/ui.js"></script>
+  <script src="/sgcs/assets/js/auth.js"></script>
+  <script src="/sgcs/assets/js/layout.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      SGCS_AUTH.requireAuth();
+      SGCS_LAYOUT.initLayout('chamados');
+
+      // Mask phone
+      const phoneInput = document.getElementById('solicitante_telefone');
+      if (phoneInput) {
+        phoneInput.addEventListener('input', e => e.target.value = SGCS_UTILS.maskPhone(e.target.value));
+      }
+
+      // Cascading subtypes
+      const subtiposMap = {
+        manutencao: ['Hidráulica', 'Elétrica', 'Elevadores', 'Estrutural'],
+        seguranca: ['Portaria & Controle de Acesso', 'CFTV', 'Alarme'],
+        limpeza: ['Áreas Comuns', 'Coleta de Lixo', 'Jardinagem'],
+        financeiro: ['Cobrança', 'Orçamento de Obras'],
+        administrativo: ['Assembleia', 'Documentação & Contratos']
+      };
+
+      const tipoSelect = document.getElementById('tipo_id');
+      const subtipoSelect = document.getElementById('subtipo_id');
+
+      tipoSelect.addEventListener('change', function () {
+        const val = tipoSelect.value;
+        subtipoSelect.innerHTML = '<option value="">Selecione o subtipo...</option>';
+        if (subtiposMap[val]) {
+          subtiposMap[val].forEach(item => {
+            const opt = document.createElement('option');
+            opt.value = item.toLowerCase();
+            opt.textContent = item;
+            subtipoSelect.appendChild(opt);
+          });
+        }
+      });
+
+      // Submit
+      document.getElementById('novo-chamado-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const data = {
+          condominio_id: document.getElementById('condominio_id').value,
+          tipo_id: tipoSelect.value,
+          solicitante_nome: document.getElementById('solicitante_nome').value.trim(),
+          titulo: document.getElementById('titulo').value.trim(),
+          descricao: document.getElementById('descricao').value.trim()
+        };
+
+        const val = SGCS_VALIDATORS.validateChamado(data);
+        if (!val.isValid) {
+          const firstErr = Object.values(val.errors)[0];
+          SGCS_UI.showToast(firstErr, 'error');
+          return;
+        }
+
+        SGCS_UI.showLoader();
+        setTimeout(() => {
+          SGCS_UI.hideLoader();
+          SGCS_UI.showToast('Chamado registrado com sucesso!');
+          setTimeout(() => {
+            window.location.href = '/sgcs/chamados/detalhe.html?id=1';
+          }, 500);
+        }, 300);
+      });
+    });
+  </script>
+</body>
+</html>

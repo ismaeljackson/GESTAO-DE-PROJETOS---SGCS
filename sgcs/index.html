@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGCS — Login de Acesso</title>
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#002451",
+            "primary-container": "#0e3a73",
+            secondary: "#346092",
+            background: "#f8f9ff",
+            surface: "#f8f9ff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#434750",
+            outline: "#737781",
+            error: "#ba1a1a"
+          },
+          fontFamily: {
+            poppins: ["Poppins", "sans-serif"],
+            sans: ["Open Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Notyf CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/sgcs/assets/css/app.css"/>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen flex items-center justify-center p-space-md">
+
+  <main class="w-full max-w-md bg-surface-container-lowest rounded-lg shadow-md p-space-xl flex flex-col gap-space-lg">
+    <div class="flex flex-col items-center text-center gap-space-xs">
+      <div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center text-on-primary font-poppins font-bold text-2xl shadow-sm">
+        S
+      </div>
+      <h1 class="font-poppins text-headline-lg font-bold text-primary mt-space-xs">SGCS</h1>
+      <p class="font-sans text-body-sm text-on-surface-variant">Sistema de Gerenciamento de Chamados para Síndicos</p>
+    </div>
+
+    <form id="login-form" class="flex flex-col gap-space-md">
+      <div class="flex flex-col gap-1">
+        <label for="email" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">E-mail Profissional</label>
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">mail</span>
+          <input type="email" id="email" required placeholder="sindico@condominio.com.br"
+                 class="w-full h-10 pl-10 pr-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline/20 outline-none focus:ring-2 focus:ring-secondary transition-all"/>
+        </div>
+        <span id="email-error" class="text-error font-sans text-body-sm hidden"></span>
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center justify-between">
+          <label for="password" class="font-sans text-label-sm font-semibold uppercase text-on-surface tracking-wider">Senha</label>
+          <a href="#" id="forgot-password" class="font-sans text-body-sm text-secondary hover:underline">Esqueceu a senha?</a>
+        </div>
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">lock</span>
+          <input type="password" id="password" required placeholder="••••••••"
+                 class="w-full h-10 pl-10 pr-space-sm bg-surface-container-low text-on-surface font-sans text-body-md rounded border border-outline/20 outline-none focus:ring-2 focus:ring-secondary transition-all"/>
+        </div>
+        <span id="password-error" class="text-error font-sans text-body-sm hidden"></span>
+      </div>
+
+      <button type="submit" id="btn-login"
+              class="w-full h-11 bg-primary hover:bg-primary-container text-on-primary font-poppins font-semibold text-body-md rounded shadow-sm flex items-center justify-center gap-space-xs transition-colors cursor-pointer mt-space-xs">
+        <span>Entrar no Sistema</span>
+        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+      </button>
+    </form>
+
+    <div class="pt-space-xs border-t border-outline/10 text-center font-sans text-body-sm text-on-surface-variant">
+      Acesso restrito a síndicos e administradores cadastrados.
+    </div>
+  </main>
+
+  <!-- Notyf CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="/sgcs/assets/js/config.js"></script>
+  <script src="/sgcs/assets/js/supabase.js"></script>
+  <script src="/sgcs/assets/js/validators.js"></script>
+  <script src="/sgcs/assets/js/ui.js"></script>
+  <script src="/sgcs/assets/js/auth.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('login-form');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const data = {
+          email: emailInput.value.trim(),
+          password: passwordInput.value
+        };
+
+        const validation = SGCS_VALIDATORS.validateLogin(data);
+        if (!validation.isValid) {
+          if (validation.errors.email) SGCS_UI.showToast(validation.errors.email, 'error');
+          else if (validation.errors.password) SGCS_UI.showToast(validation.errors.password, 'error');
+          return;
+        }
+
+        SGCS_UI.showLoader();
+        SGCS_AUTH.signIn(data.email, data.password)
+          .then(user => {
+            SGCS_UI.hideLoader();
+            SGCS_UI.showToast('Login efetuado com sucesso!');
+            setTimeout(() => {
+              window.location.href = '/sgcs/dashboard.html';
+            }, 500);
+          })
+          .catch(err => {
+            SGCS_UI.hideLoader();
+            SGCS_UI.showToast(err.message || 'Erro ao efetuar login. Verifique as credenciais.', 'error');
+          });
+      });
+    });
+  </script>
+</body>
+</html>
