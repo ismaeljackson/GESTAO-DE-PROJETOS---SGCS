@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Perfil do Usuário - SGCS</title>
+  <link href="../assets/css/app.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm",
+      "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/module.esm.js"
+    }
+  }
+  </script>
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" } } } };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+  <div id="app-wrapper">
+    <main class="flex-1 pl-64 pt-16 w-full">
+      <div class="px-gutter-desktop py-space-xl flex flex-col w-full max-w-3xl mx-auto gap-space-lg" x-data="perfilForm()">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+          <div class="flex flex-col">
+            <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Meu Perfil</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Gerencie suas informações e preferências.</p>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded shadow-sm border border-outline/20 flex flex-col">
+
+          <form @submit.prevent="save" class="p-space-xl flex flex-col gap-space-lg">
+
+            <div class="flex items-center gap-space-md mb-space-sm">
+              <div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center border border-outline/20 relative overflow-hidden group">
+                <template x-if="form.avatar_url">
+                  <img :src="form.avatar_url" class="w-full h-full object-cover">
+                </template>
+                <template x-if="!form.avatar_url">
+                  <i data-lucide="user" class="w-8 h-8 text-on-surface-variant group-hover:opacity-0 transition-opacity"></i>
+                </template>
+                <label for="avatar_upload" class="absolute inset-0 bg-black/50 hidden group-hover:flex items-center justify-center cursor-pointer transition-all">
+                  <i data-lucide="camera" class="w-6 h-6 text-white"></i>
+                  <input type="file" id="avatar_upload" @change="uploadAvatar" class="hidden" accept="image/*">
+                </label>
+              </div>
+              <div class="flex flex-col gap-1">
+                <span class="font-label-md font-bold text-on-surface">Foto de Perfil</span>
+                <span class="font-body-sm text-on-surface-variant">JPG, GIF ou PNG. Max 2MB.</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+              <div class="flex flex-col gap-space-2xs">
+                <label class="font-label-md text-on-surface-variant">Nome Completo</label>
+                <input type="text" x-model="form.nome_completo" required class="h-10 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none">
+              </div>
+
+              <div class="flex flex-col gap-space-2xs">
+                <label class="font-label-md text-on-surface-variant">E-mail</label>
+                <input type="email" x-model="form.email" disabled class="h-10 px-space-sm bg-surface-container-low border border-outline/20 rounded text-on-surface-variant outline-none cursor-not-allowed">
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-space-2xs">
+              <label class="font-label-md text-on-surface-variant">Telefone</label>
+              <input type="text" x-model="form.telefone" class="h-10 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none" placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="border-t border-outline/10 pt-space-lg mt-space-sm">
+              <h3 class="font-headline-sm text-on-surface mb-space-md">Segurança</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+                <div class="flex flex-col gap-space-2xs">
+                  <label class="font-label-md text-on-surface-variant">Nova Senha</label>
+                  <input type="password" x-model="form.senha" class="h-10 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none">
+                </div>
+
+                <div class="flex flex-col gap-space-2xs">
+                  <label class="font-label-md text-on-surface-variant">Confirmar Nova Senha</label>
+                  <input type="password" x-model="form.confirmar_senha" class="h-10 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none">
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-end gap-space-sm pt-space-md">
+              <button type="submit" :disabled="saving" class="px-space-md h-10 rounded bg-primary text-on-primary hover:bg-primary/90 transition-colors font-label-md flex items-center gap-2">
+                <span x-text="saving ? 'Salvando...' : 'Salvar Alterações'"></span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { ui } from '../assets/js/ui.js';
+    import { supabase } from '../assets/js/supabase.js';
+    import Alpine from 'alpinejs';
+    window.Alpine = Alpine;
+
+    document.addEventListener('alpine:init', () => {
+      window.Alpine.data('perfilForm', () => ({
+        saving: false,
+        user_id: null,
+        form: {
+          nome_completo: '', email: '', telefone: '', avatar_url: '',
+          senha: '', confirmar_senha: ''
+        },
+        async init() {
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session) {
+             this.user_id = session.user.id;
+             this.form.email = session.user.email;
+             const { data } = await supabase.from('profiles').select('*').eq('id', this.user_id).single();
+             if (data) {
+                this.form.nome_completo = data.nome_completo;
+                this.form.telefone = data.telefone;
+                this.form.avatar_url = data.avatar_url;
+             }
+          }
+        },
+        async uploadAvatar(e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          try {
+             const fileExt = file.name.split('.').pop();
+             const fileName = `${this.user_id}_${Math.random()}.${fileExt}`;
+             const { data, error } = await supabase.storage.from('avatars').upload(`users/${fileName}`, file);
+             if (error) throw error;
+
+             const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(`users/${fileName}`);
+             this.form.avatar_url = urlData.publicUrl;
+
+             await supabase.from('profiles').update({ avatar_url: this.form.avatar_url }).eq('id', this.user_id);
+          } catch(err) {
+             console.error('Error uploading avatar', err);
+          }
+        },
+        async save() {
+          if (this.form.senha && this.form.senha !== this.form.confirmar_senha) {
+            return alert('As senhas não coincidem!');
+          }
+          this.saving = true;
+          try {
+            await supabase.from('profiles').update({
+               nome_completo: this.form.nome_completo,
+               telefone: this.form.telefone
+            }).eq('id', this.user_id);
+
+            if (this.form.senha) {
+               await supabase.auth.updateUser({ password: this.form.senha });
+            }
+            alert('Perfil atualizado com sucesso!');
+          } catch(e) {
+             console.error('Update error', e);
+             alert('Erro ao atualizar perfil.');
+          } finally {
+            this.saving = false;
+          }
+        }
+      }));
+    });
+
+    Alpine.start();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await ui.renderLayout('configuracoes', [{label: 'Configurações', active: false}, {label: 'Meu Perfil', active: true}]);
+    });
+  </script>
+</body>
+</html>
