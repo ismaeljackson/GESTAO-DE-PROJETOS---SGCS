@@ -3,7 +3,7 @@ import { auth } from './auth.js';
 import { supabase } from './supabase.js';
 
 export const ui = {
-  async renderLayout(activePath, breadcrumbs, basePath = '/GESTAO-DE-PROJETOS---SGCS/') {
+  async renderLayout(activePath, breadcrumbs, basePath = '') {
     const body = document.querySelector('body');
     let wrapper = document.getElementById('app-wrapper');
     if (!wrapper) {

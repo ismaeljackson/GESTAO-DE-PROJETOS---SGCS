@@ -1,5 +1,5 @@
 export const uiComponents = {
-  getSidebar: (activePath, basePath = '/GESTAO-DE-PROJETOS---SGCS/') => `
+  getSidebar: (activePath, basePath = '') => `
   <aside class="fixed left-0 top-0 h-full w-64 bg-primary text-on-primary z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
     <div class="flex flex-col">
       <div class="h-16 px-space-md flex items-center gap-space-sm bg-primary border-b border-outline/20">
@@ -57,7 +57,7 @@ export const uiComponents = {
     </div>
   </aside>`,
 
-  getHeader: (breadcrumbs, basePath = '/GESTAO-DE-PROJETOS---SGCS/') => `
+  getHeader: (breadcrumbs, basePath = '') => `
   <header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-[2rem]">
     <div class="flex items-center gap-[1rem]">
       <div class="flex items-center gap-[0.5rem] text-on-surface-variant font-body-sm text-body-sm">
