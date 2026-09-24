@@ -150,7 +150,7 @@
     Alpine.start();
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await ui.renderLayout('dashboard', [], '');
+      await ui.renderLayout('dashboard', [], '/GESTAO-DE-PROJETOS---SGCS/');
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById('current-formatted-date').textContent = new Date().toLocaleDateString('pt-BR', options);
     });
