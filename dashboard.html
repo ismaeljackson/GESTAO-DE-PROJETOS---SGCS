@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Dashboard - SGCS</title>
+  <link href="assets/css/app.css" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm",
+      "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/module.esm.js"
+    }
+  }
+  </script>
+
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "space-xs": "0.5rem", "space-2xs": "0.25rem", "space-xl": "1.5rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-lg": "1.25rem", "space-2xl": "2rem", "space-sm": "0.75rem" } } } };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+
+  <div id="app-wrapper">
+    <main class="flex-1 pl-64 pt-16 w-full">
+      <div class="px-gutter-desktop py-space-xl flex flex-col w-full gap-space-lg" x-data="dashboardData()">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded shadow-sm">
+          <div class="flex flex-col">
+            <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm uppercase tracking-wider">
+              <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
+              <span id="current-formatted-date"></span>
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary-container mx-space-2xs"></span>
+              <span class="text-secondary font-semibold">Painel Operacional</span>
+            </div>
+            <h1 class="font-headline-lg text-primary tracking-tight mt-space-2xs">
+              Visão Geral de Manutenção
+            </h1>
+            <p class="font-body-sm text-on-surface-variant">
+              Bem-vindo. Existem <span class="font-bold text-error" x-text="criticos + ' ocorrências críticas'"></span> requerendo ação imediata.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-space-sm">
+            <button class="h-9 px-space-md rounded bg-surface-container-low hover:bg-surface-container text-primary font-label-md flex items-center gap-space-2xs transition-colors" type="button" onclick="window.location.href='condominios/form.html'">
+              <i data-lucide="building" class="w-4 h-4"></i>
+              <span>Novo Condomínio</span>
+            </button>
+            <button class="h-9 px-space-md rounded bg-primary hover:bg-primary-container text-on-primary font-label-md flex items-center gap-space-2xs shadow-sm transition-colors" type="button" onclick="window.location.href='chamados/novo.html'">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span>Novo Chamado</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+          <div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between relative overflow-hidden group">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-label-sm uppercase tracking-wider text-on-surface-variant">Condomínios Ativos</span>
+                <span class="font-data-metric text-primary mt-space-2xs" x-text="condominios"></span>
+              </div>
+              <div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary">
+                <i data-lucide="building-2" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-container"></div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <div class="flex items-center gap-space-2xs">
+                  <span class="font-label-sm uppercase tracking-wider text-on-surface-variant">Chamados em Aberto</span>
+                </div>
+                <span class="font-data-metric text-error mt-space-2xs" x-text="abertos"></span>
+              </div>
+              <div class="w-10 h-10 rounded bg-error-container/40 flex items-center justify-center text-error">
+                <i data-lucide="alert-circle" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-error"></div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-label-sm uppercase tracking-wider text-on-surface-variant">Chamados em Andamento</span>
+                <span class="font-data-metric text-primary-container mt-space-2xs" x-text="andamento"></span>
+              </div>
+              <div class="w-10 h-10 rounded bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-container"></div>
+          </div>
+
+          <div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <span class="font-label-sm uppercase tracking-wider text-on-surface-variant">Resolvidos Hoje</span>
+                <span class="font-data-metric text-primary mt-space-2xs" x-text="resolvidos"></span>
+              </div>
+              <div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary">
+                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary-container"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { ui } from './assets/js/ui.js';
+    import { supabase } from './assets/js/supabase.js';
+    import Alpine from 'alpinejs';
+    window.Alpine = Alpine;
+
+    document.addEventListener('alpine:init', () => {
+      window.Alpine.data('dashboardData', () => ({
+        condominios: 0,
+        abertos: 0,
+        andamento: 0,
+        resolvidos: 0,
+        criticos: 0,
+
+        async init() {
+          try {
+            const { count: condominiosCount } = await supabase.from('condominios').select('*', { count: 'exact', head: true });
+            this.condominios = condominiosCount || 0;
+
+            const { data: chamados } = await supabase.from('chamados').select('status, prioridade, updated_at');
+            if (chamados) {
+               this.abertos = chamados.filter(c => c.status === 'aberto').length;
+               this.andamento = chamados.filter(c => c.status === 'em andamento').length;
+               this.criticos = chamados.filter(c => c.prioridade === 'alta' && c.status !== 'resolvido' && c.status !== 'cancelado').length;
+
+               const today = new Date();
+               this.resolvidos = chamados.filter(c => c.status === 'resolvido' && new Date(c.updated_at).toDateString() === today.toDateString()).length;
+            }
+          } catch(e) { console.error('Failed fetching dashboard metrics', e); }
+        }
+      }));
+    });
+
+    Alpine.start();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await ui.renderLayout('dashboard', [], './' );
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('current-formatted-date').textContent = new Date().toLocaleDateString('pt-BR', options);
+    });
+  </script>
+</body>
+</html>
