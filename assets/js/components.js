@@ -16,14 +16,14 @@ export const uiComponents = {
           <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
           <span class="font-label-md text-label-md">Dashboard</span>
         </a>
-        <a href="${basePath}chamados/" class="flex items-center justify-between px-space-sm py-space-xs rounded transition-colors ${activePath === 'chamados' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+        <a href="${basePath}chamados/index.html" class="flex items-center justify-between px-space-sm py-space-xs rounded transition-colors ${activePath === 'chamados' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
           <div class="flex items-center gap-space-sm">
             <i data-lucide="clipboard-list" class="w-5 h-5"></i>
             <span class="font-label-md text-label-md">Chamados</span>
           </div>
           <span id="badge-chamados" class="px-space-2xs py-[2px] rounded-full bg-error text-on-error font-label-sm text-label-sm leading-none" style="display: none;">0</span>
         </a>
-        <a href="${basePath}condominios/" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePath === 'condominios' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
+        <a href="${basePath}condominios/index.html" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors ${activePath === 'condominios' ? 'bg-primary-container text-on-primary font-bold shadow-sm' : 'text-on-primary-container hover:bg-primary-container/60 hover:text-on-primary'}">
           <i data-lucide="building-2" class="w-5 h-5"></i>
           <span class="font-label-md text-label-md">Condomínios</span>
         </a>
