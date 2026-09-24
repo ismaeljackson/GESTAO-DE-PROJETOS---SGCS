@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Login - SGCS</title>
+  <title>Cadastrar - SGCS</title>
   <link href="assets/css/app.css" rel="stylesheet"/>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -26,16 +26,18 @@
     import Alpine from 'alpinejs';
     window.Alpine = Alpine;
 
-    window.loginForm = () => ({
-        email: '', password: '', loading: false, error: null,
+    window.registerForm = () => ({
+        nome_completo: '', email: '', password: '', role: 'admin', loading: false, error: null,
         async submit() {
           this.loading = true; this.error = null;
           try {
-            const { error } = await auth.login(this.email, this.password);
+            const userData = { nome_completo: this.nome_completo, role: this.role };
+            const { error } = await auth.register(this.email, this.password, userData);
             if (error) throw error;
-            window.location.href = 'dashboard.html';
+            alert("Cadastro realizado! Por favor faça o login.");
+            window.location.href = 'index.html';
           } catch (err) {
-            this.error = err.message || 'Erro ao realizar login. Verifique suas credenciais.';
+            this.error = err.message || 'Erro ao realizar cadastro.';
           } finally {
             this.loading = false;
           }
@@ -47,19 +49,24 @@
   </script>
 </head>
 <body class="bg-surface-container-lowest font-body-md text-on-surface antialiased flex items-center justify-center min-h-screen">
-  <div class="w-full max-w-md p-space-xl bg-surface-container-lowest shadow-sm border border-outline/20 rounded" x-data="loginForm()">
+  <div class="w-full max-w-md p-space-xl bg-surface-container-lowest shadow-sm border border-outline/20 rounded" x-data="registerForm()">
     <div class="flex flex-col items-center mb-space-xl">
       <div class="flex flex-col items-center text-center">
         <span class="font-display-lg text-display-lg tracking-tight text-primary leading-none mb-space-2xs">SGCS</span>
         <span class="font-label-md text-label-md text-secondary tracking-wider uppercase">Gestão Predial</span>
       </div>
-      <h1 class="font-headline-sm text-headline-sm text-on-surface mt-space-md">Acesse sua conta</h1>
+      <h1 class="font-headline-sm text-headline-sm text-on-surface mt-space-md">Crie uma conta de Administrador</h1>
     </div>
 
     <form @submit.prevent="submit" class="flex flex-col gap-space-md">
       <div x-show="error" class="bg-error-container text-on-error-container p-space-sm rounded font-body-sm text-body-sm flex items-center gap-space-xs" style="display: none;">
         <i data-lucide="alert-circle" class="w-4 h-4"></i>
         <span x-text="error"></span>
+      </div>
+
+      <div class="flex flex-col gap-space-2xs">
+        <label for="nome" class="font-label-md text-label-md text-on-surface-variant">Nome Completo</label>
+        <input type="text" id="nome" x-model="nome_completo" required class="w-full h-10 px-space-sm bg-surface-container-low text-on-surface border border-outline/40 rounded focus:outline-none focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Nome Sobrenome">
       </div>
 
       <div class="flex flex-col gap-space-2xs">
@@ -73,10 +80,10 @@
       </div>
 
       <button type="submit" :disabled="loading" class="mt-space-xs w-full h-10 bg-primary text-on-primary font-label-md text-label-md rounded shadow-sm hover:bg-primary/90 transition-colors flex items-center justify-center gap-space-xs disabled:opacity-50">
-        <span x-show="!loading">Entrar</span>
+        <span x-show="!loading">Cadastrar</span>
         <i x-show="loading" data-lucide="loader-2" class="w-4 h-4 animate-spin" style="display: none;"></i>
       </button>
-      <a href="register.html" class="text-center font-label-sm mt-space-sm hover:underline block w-full text-primary">Não tem uma conta? Crie aqui</a>
+      <a href="index.html" class="text-center font-label-sm mt-space-sm hover:underline">Já tenho uma conta</a>
     </form>
   </div>
 </body>
