@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Condomínios - SGCS</title>
+  <link href="../assets/css/app.css" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm",
+      "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/module.esm.js"
+    }
+  }
+  </script>
+
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" } } } };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+
+  <div id="app-wrapper">
+    <main class="flex-1 pl-64 pt-16 w-full">
+      <div class="px-gutter-desktop py-space-xl flex flex-col w-full gap-space-lg" x-data="condominiosList()">
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-xl">
+          <div class="flex flex-col">
+            <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Condomínios Cadastrados</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Gerenciamento de unidades residenciais e comerciais sob sua gestão.</p>
+          </div>
+
+          <div class="flex items-center gap-space-sm">
+            <button @click="window.location.href='form.html'" class="h-9 px-space-md rounded bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-space-2xs shadow-sm transition-colors" type="button">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              <span>Novo Condomínio</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded shadow-sm border border-outline/20 overflow-hidden">
+          <div class="overflow-x-auto w-full">
+            <table class="w-full text-left border-collapse min-w-[800px]">
+              <thead>
+                <tr class="border-b border-outline/20 bg-surface-container-low text-on-surface-variant font-label-md text-label-md">
+                  <th class="p-space-sm font-semibold">Nome do Condomínio</th>
+                  <th class="p-space-sm font-semibold w-48">CNPJ</th>
+                  <th class="p-space-sm font-semibold w-32">Unidades</th>
+                  <th class="p-space-sm font-semibold w-32 text-center">Status</th>
+                  <th class="p-space-sm w-16"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline/10 text-on-surface">
+                <template x-for="condominio in condominios" :key="condominio.id">
+                  <tr class="hover:bg-surface-container-low/50 transition-colors group">
+                    <td class="p-space-sm">
+                      <div class="flex flex-col">
+                        <span class="font-semibold text-primary" x-text="condominio.nome"></span>
+                        <span class="text-body-sm text-on-surface-variant mt-0.5 truncate max-w-sm" x-text="condominio.endereco_completo"></span>
+                      </div>
+                    </td>
+                    <td class="p-space-sm text-on-surface-variant" x-text="condominio.cnpj"></td>
+                    <td class="p-space-sm" x-text="condominio.quantidade_unidades"></td>
+                    <td class="p-space-sm text-center">
+                      <span class="inline-flex px-2 py-0.5 rounded-full font-label-sm text-[11px] uppercase tracking-wider font-bold"
+                            :class="condominio.ativo ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-variant text-on-surface-variant'">
+                        <span x-text="condominio.ativo ? 'Ativo' : 'Inativo'"></span>
+                      </span>
+                    </td>
+                    <td class="p-space-sm text-right">
+                      <button @click="edit(condominio.id)" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-outline transition-colors" title="Editar">
+                        <i data-lucide="edit-2" class="w-4 h-4"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </template>
+                <tr x-show="loading">
+                  <td colspan="5" class="p-space-md text-center text-on-surface-variant">Carregando...</td>
+                </tr>
+                <tr x-show="!loading && condominios.length === 0">
+                  <td colspan="5" class="p-space-md text-center text-on-surface-variant">Nenhum condomínio encontrado.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { ui } from '../assets/js/ui.js';
+    import { supabase } from '../assets/js/supabase.js';
+    import Alpine from 'alpinejs';
+    window.Alpine = Alpine;
+
+    document.addEventListener('alpine:init', () => {
+      window.Alpine.data('condominiosList', () => ({
+        condominios: [],
+        loading: true,
+
+        async init() {
+          this.loading = true;
+          try {
+            const { data, error } = await supabase.from('condominios').select('*').order('nome');
+            if (error) throw error;
+            this.condominios = data || [];
+          } catch(e) {
+            console.error('Error fetching condominios:', e);
+          } finally {
+            this.loading = false;
+            setTimeout(() => { if(window.lucide) window.lucide.createIcons(); }, 10);
+          }
+        },
+
+        edit(id) {
+          window.location.href = `form.html?id=${id}`;
+        }
+      }));
+    });
+
+    Alpine.start();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await ui.renderLayout('condominios', [{label: 'Condomínios', active: true}]);
+    });
+  </script>
+</body>
+</html>

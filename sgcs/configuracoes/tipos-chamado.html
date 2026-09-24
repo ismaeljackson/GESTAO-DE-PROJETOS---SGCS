@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Tipos de Chamado - SGCS</title>
+  <link href="../assets/css/app.css" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm",
+      "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/module.esm.js"
+    }
+  }
+  </script>
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" } } } };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+
+  <div id="app-wrapper">
+    <main class="flex-1 pl-64 pt-16 w-full">
+      <div class="px-gutter-desktop py-space-xl flex flex-col w-full gap-space-lg" x-data="tiposForm()">
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-xl">
+          <div class="flex flex-col">
+            <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Tipos de Chamado</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Configure as categorias e subcategorias usadas nos chamados.</p>
+          </div>
+
+          <div class="flex items-center gap-space-sm">
+            <button @click="openModal = true" class="h-9 px-space-md rounded bg-primary hover:bg-primary-container text-on-primary font-label-md flex items-center gap-space-2xs shadow-sm transition-colors">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              <span>Novo Tipo</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded shadow-sm border border-outline/20 p-space-md">
+          <template x-if="loading">
+            <div class="p-space-xl text-center text-on-surface-variant">Carregando tipos...</div>
+          </template>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+            <template x-for="tipo in tipos" :key="tipo.id">
+              <div class="border border-outline/20 rounded p-space-sm flex flex-col hover:border-primary/50 transition-colors">
+                <div class="flex items-center justify-between mb-space-sm pb-space-xs border-b border-outline/10">
+                  <div class="flex items-center gap-space-xs">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-white" :style="`background-color: ${tipo.cor}`">
+                      <i :data-lucide="tipo.icone" class="w-4 h-4"></i>
+                    </div>
+                    <span class="font-label-md font-bold text-on-surface" x-text="tipo.nome"></span>
+                  </div>
+                  <button @click="excluirTipo(tipo.id)" class="text-outline hover:text-error transition-colors" title="Excluir"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <span class="font-label-sm text-on-surface-variant uppercase tracking-wider text-[10px]">Subtipos</span>
+                  <div class="flex flex-wrap gap-1">
+                    <template x-for="sub in tipo.subtipos" :key="sub.id">
+                      <span class="px-2 py-0.5 bg-surface-container-low border border-outline/10 rounded-full font-body-sm text-[11px]" x-text="sub.nome"></span>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </template>
+            <template x-if="!loading && tipos.length === 0">
+               <div class="col-span-full p-space-xl text-center text-on-surface-variant">Nenhum tipo cadastrado.</div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div x-show="openModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" style="display: none;">
+          <div class="bg-surface-container-lowest w-[400px] rounded p-space-lg" @click.away="openModal = false">
+            <h2 class="font-headline-sm mb-space-md">Adicionar Novo Tipo</h2>
+            <form @submit.prevent="saveTipo" class="flex flex-col gap-space-sm">
+              <div>
+                <label class="font-label-md text-on-surface-variant">Nome</label>
+                <input type="text" x-model="novoTipo.nome" class="w-full h-9 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none" required>
+              </div>
+              <div class="flex gap-space-sm">
+                <div class="flex-1">
+                  <label class="font-label-md text-on-surface-variant">Ícone (Lucide)</label>
+                  <input type="text" x-model="novoTipo.icone" class="w-full h-9 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none" placeholder="wrench" required>
+                </div>
+                <div>
+                  <label class="font-label-md text-on-surface-variant">Cor (Hex)</label>
+                  <input type="text" x-model="novoTipo.cor" class="w-full h-9 px-space-sm bg-surface-container-low border border-outline/40 rounded focus:ring-1 focus:ring-primary outline-none" placeholder="#3B82F6" required>
+                </div>
+              </div>
+              <div class="flex justify-end gap-space-sm mt-space-sm border-t border-outline/10 pt-space-sm">
+                <button type="button" @click="openModal = false" class="px-space-md h-9 rounded border border-outline/40 font-label-md">Cancelar</button>
+                <button type="submit" :disabled="saving" class="px-space-md h-9 rounded bg-primary text-on-primary font-label-md flex items-center gap-2">
+                  <span x-text="saving ? 'Salvando...' : 'Salvar'"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { ui } from '../assets/js/ui.js';
+    import { supabase } from '../assets/js/supabase.js';
+    import Alpine from 'alpinejs';
+    window.Alpine = Alpine;
+
+    document.addEventListener('alpine:init', () => {
+      window.Alpine.data('tiposForm', () => ({
+        tipos: [],
+        loading: true,
+        openModal: false,
+        saving: false,
+        novoTipo: {
+          nome: '',
+          icone: 'wrench',
+          cor: '#3B82F6'
+        },
+
+        async init() {
+          await this.loadData();
+        },
+
+        async loadData() {
+          this.loading = true;
+          try {
+            const { data: tiposData, error: errTipos } = await supabase.from('tipos_chamado').select('*').order('nome');
+            if (errTipos) throw errTipos;
+
+            const { data: subtiposData, error: errSub } = await supabase.from('subtipos_chamado').select('*').order('nome');
+            if (errSub) throw errSub;
+
+            this.tipos = (tiposData || []).map(t => ({
+              ...t,
+              subtipos: (subtiposData || []).filter(s => s.tipo_id === t.id)
+            }));
+
+          } catch(e) { console.error('Error fetching', e); } finally {
+            this.loading = false;
+            setTimeout(() => { if(window.lucide) window.lucide.createIcons(); }, 50);
+          }
+        },
+
+        async saveTipo() {
+          this.saving = true;
+          try {
+             const { error } = await supabase.from('tipos_chamado').insert([this.novoTipo]);
+             if (error) throw error;
+
+             this.openModal = false;
+             this.novoTipo = { nome: '', icone: 'wrench', cor: '#3B82F6' };
+             await this.loadData();
+          } catch(e) {
+            console.error('Error saving', e);
+            alert('Erro ao salvar.');
+          } finally {
+            this.saving = false;
+          }
+        },
+
+        async excluirTipo(id) {
+          if (!confirm('Deseja realmente excluir este tipo?')) return;
+          try {
+             const { error } = await supabase.from('tipos_chamado').delete().eq('id', id);
+             if (error) throw error;
+             await this.loadData();
+          } catch(e) {
+            console.error('Error deleting', e);
+            alert('Erro ao excluir.');
+          }
+        }
+      }));
+    });
+
+    Alpine.start();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await ui.renderLayout('tipos-chamado', [{label: 'Configurações', active: false}, {label: 'Tipos de Chamado', active: true}]);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Chamados - SGCS</title>
+  <link href="../assets/css/app.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm",
+      "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/module.esm.js"
+    }
+  }
+  </script>
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" } } } };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+  <div id="app-wrapper">
+    <main class="flex-1 pl-64 pt-16 w-full">
+      <div class="px-gutter-desktop py-space-xl flex flex-col w-full gap-space-lg pb-space-2xl" x-data="chamadosList()">
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md">
+          <div class="flex flex-col">
+            <h1 class="font-headline-lg text-primary tracking-tight">Gestão de Chamados</h1>
+            <p class="font-body-md text-on-surface-variant mt-0.5">Centralize e acompanhe solicitações de todos os condomínios.</p>
+          </div>
+          <div class="flex items-center gap-space-sm self-start md:self-auto">
+            <button @click="window.location.href='novo.html'" class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-primary hover:bg-primary/90 text-white font-label-md transition-colors" type="button">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              <span>Novo Chamado</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded shadow-sm border border-outline/20 p-space-md flex flex-col gap-space-sm">
+          <div class="flex gap-space-sm">
+            <div class="relative flex-1">
+              <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-outline"></i>
+              <input type="text" placeholder="Buscar chamados..." class="w-full h-9 pl-9 pr-4 bg-surface-container-low text-on-surface border border-outline/20 rounded outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+            </div>
+          </div>
+
+          <div class="overflow-x-auto w-full mt-space-sm">
+            <table class="w-full text-left border-collapse min-w-[900px]">
+              <thead>
+                <tr class="border-b border-outline/20 bg-surface-container-low text-on-surface-variant font-label-md">
+                  <th class="p-space-sm w-24">Protocolo</th>
+                  <th class="p-space-sm w-64">Título e Detalhes</th>
+                  <th class="p-space-sm w-48">Condomínio / Unidade</th>
+                  <th class="p-space-sm w-32 text-center">Prioridade</th>
+                  <th class="p-space-sm w-32 text-center">Status</th>
+                  <th class="p-space-sm w-16"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline/10 text-on-surface">
+                <template x-for="chamado in chamados" :key="chamado.id">
+                  <tr class="hover:bg-surface-container-low/50 transition-colors group cursor-pointer" @click="viewDetalhe(chamado.id)">
+                    <td class="p-space-sm font-label-md text-on-surface-variant">
+                      <span x-text="'#' + String(chamado.numero_sequencial).padStart(4, '0')"></span>
+                    </td>
+                    <td class="p-space-sm">
+                      <div class="flex flex-col">
+                        <span class="font-semibold text-primary" x-text="chamado.titulo"></span>
+                        <div class="flex items-center gap-2 mt-1 text-body-sm text-on-surface-variant">
+                          <span x-text="chamado.solicitante_nome"></span>
+                          <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                          <span x-text="chamado.tipo_nome"></span>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="p-space-sm text-on-surface-variant">
+                      <div class="flex flex-col text-body-sm">
+                        <span class="font-semibold text-on-surface" x-text="chamado.condominio_nome"></span>
+                        <span x-text="chamado.solicitante_unidade"></span>
+                      </div>
+                    </td>
+                    <td class="p-space-sm text-center">
+                      <span class="inline-flex px-2 py-0.5 rounded font-label-sm text-[11px] font-bold uppercase tracking-wider"
+                            :class="prioridadeClass(chamado.prioridade)" x-text="chamado.prioridade">
+                      </span>
+                    </td>
+                    <td class="p-space-sm text-center">
+                      <span class="inline-flex px-2 py-0.5 rounded-full font-label-sm text-[11px] font-bold uppercase tracking-wider bg-surface-variant text-on-surface-variant" x-text="chamado.status">
+                      </span>
+                    </td>
+                    <td class="p-space-sm text-right">
+                      <i data-lucide="chevron-right" class="w-5 h-5 text-outline"></i>
+                    </td>
+                  </tr>
+                </template>
+                <tr x-show="loading">
+                  <td colspan="6" class="p-space-md text-center text-on-surface-variant">Carregando...</td>
+                </tr>
+                <tr x-show="!loading && chamados.length === 0">
+                  <td colspan="6" class="p-space-md text-center text-on-surface-variant">Nenhum chamado encontrado.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { ui } from '../assets/js/ui.js';
+    import { supabase } from '../assets/js/supabase.js';
+    import Alpine from 'alpinejs';
+    window.Alpine = Alpine;
+
+    document.addEventListener('alpine:init', () => {
+      window.Alpine.data('chamadosList', () => ({
+        chamados: [],
+        loading: true,
+
+        async init() {
+          this.loading = true;
+          try {
+            const { data, error } = await supabase
+              .from('chamados')
+              .select('*, condominios(nome), tipos_chamado(nome)')
+              .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            this.chamados = (data || []).map(c => ({
+              ...c,
+              condominio_nome: c.condominios?.nome || 'N/A',
+              tipo_nome: c.tipos_chamado?.nome || 'N/A'
+            }));
+
+          } catch(e) { console.error('Error fetching chamados:', e); } finally {
+            this.loading = false;
+            setTimeout(() => { if(window.lucide) window.lucide.createIcons(); }, 10);
+          }
+        },
+
+        prioridadeClass(pri) {
+          if(pri === 'alta') return 'bg-error-container text-on-error-container';
+          if(pri === 'media') return 'bg-secondary-container text-on-secondary-container';
+          return 'bg-surface-container text-on-surface-variant';
+        },
+
+        viewDetalhe(id) {
+          window.location.href = `detalhe.html?id=${id}`;
+        }
+      }));
+    });
+
+    Alpine.start();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await ui.renderLayout('chamados', [{label: 'Chamados', active: true}]);
+    });
+  </script>
+</body>
+</html>
