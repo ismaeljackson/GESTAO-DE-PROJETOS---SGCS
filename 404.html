@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Página não encontrada - SGCS</title>
+  <link href="assets/css/app.css" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm",
+      "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/module.esm.js"
+    }
+  }
+  </script>
+
+  <!-- Tailwind Config -->
+  <script id="tailwind-config">
+    tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "inverse-on-surface": "#eaf1ff", "error-container": "#ffdad6", "primary": "#002451", "secondary": "#346092", "surface-container-highest": "#d3e4fe", "secondary-fixed": "#d2e4ff", "on-secondary": "#ffffff", "on-tertiary-container": "#4caee8", "on-tertiary-fixed-variant": "#004c6e", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-error": "#ffffff", "secondary-container": "#9cc7fe", "tertiary-fixed": "#c8e6ff", "primary-container": "#0e3a73", "secondary-fixed-dim": "#a1c9ff", "tertiary-container": "#003f5c", "surface-container-lowest": "#ffffff", "surface-variant": "#d3e4fe", "inverse-primary": "#abc7ff", "on-surface-variant": "#434750", "surface-dim": "#cbdbf5", "tertiary-fixed-dim": "#88ceff", "surface-container-low": "#eff4ff", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#001e2f", "error": "#ba1a1a", "surface-tint": "#3a5e99", "background": "#f8f9ff", "on-background": "#0b1c30", "surface": "#f8f9ff", "primary-fixed": "#d7e3ff", "on-error-container": "#93000a", "primary-fixed-dim": "#abc7ff", "on-surface": "#0b1c30", "on-primary-container": "#83a6e5", "outline": "#737781", "outline-variant": "#c3c6d1", "on-secondary-fixed": "#001c37", "on-tertiary": "#ffffff", "surface-bright": "#f8f9ff", "on-secondary-container": "#245283", "on-primary-fixed-variant": "#1f4680", "on-secondary-fixed-variant": "#164879", "on-primary-fixed": "#001b3f", "on-primary": "#ffffff", "tertiary": "#00283d" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "space-xs": "0.5rem", "space-2xs": "0.25rem", "space-xl": "1.5rem", "margin-mobile": "1rem", "gutter-mobile": "0.75rem", "gutter-desktop": "1.5rem", "margin-desktop": "2rem", "space-lg": "1.25rem", "space-2xl": "2rem", "space-sm": "0.75rem" }, "fontFamily": { "label-sm": [ "Open Sans" ], "headline-lg-mobile": [ "Poppins" ], "headline-sm": [ "Poppins" ], "display-lg": [ "Poppins" ], "body-lg": [ "Open Sans" ], "headline-lg": [ "Poppins" ], "label-md": [ "Open Sans" ], "data-metric": [ "Poppins" ], "body-md": [ "Open Sans" ], "body-sm": [ "Open Sans" ] }, "fontSize": { "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ], "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "label-md": [ "13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "data-metric": [ "28px", { "lineHeight": "32px", "fontWeight": "700" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ] } } };
+  </script>
+</head>
+<body class="bg-surface-container-lowest font-body-md text-on-surface antialiased flex items-center justify-center min-h-screen">
+  <div class="w-full max-w-md p-space-xl bg-surface-container-lowest shadow-sm border border-outline/20 rounded flex flex-col items-center">
+    <div class="flex flex-col items-center mb-space-md text-center">
+      <h1 class="font-display-lg text-display-lg tracking-tight text-primary leading-none mb-space-2xs">404</h1>
+      <span class="font-label-md text-label-md text-secondary tracking-wider uppercase mt-space-2xs">Página não encontrada</span>
+    </div>
+
+    <p class="font-body-md text-on-surface-variant text-center mb-space-lg">A URL informada não foi encontrada em nosso servidor ou está com o projeto recém configurado. Retorne para o painel principal.</p>
+
+    <button onclick="window.location.href='index.html'" class="mt-space-xs w-full h-10 bg-primary text-on-primary font-label-md text-label-md rounded shadow-sm hover:bg-primary/90 transition-colors flex items-center justify-center gap-space-xs">
+      <span>Voltar ao início</span>
+    </button>
+  </div>
+</body>
+</html>
